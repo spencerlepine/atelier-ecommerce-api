@@ -56,7 +56,7 @@
 	"prettier": {
 		"useTabs": true,
 		"tabSize": 2,
-		"semi": false,
+		"semi": true,
 		"singleQuote": true,
 		"trailingComma": "es5",
 		"bracketSpacing": true
