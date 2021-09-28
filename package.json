@@ -5,10 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon index.js",
-		"test": "TEST_DATABASE_URL=postgresql://postgres:sth@localhost/products jest",
+		"test": "jest --runInBand",
 		"lint": "prettier --check .",
-		"format": "prettier --write .",
-		"test:pg": "pg-test run -- node index.js"
+		"format": "prettier --write ."
 	},
 	"repository": {
 		"type": "git",
@@ -76,5 +75,10 @@
 		"singleQuote": true,
 		"trailingComma": "es5",
 		"bracketSpacing": true
+	},
+	"jest": {
+		"setupFilesAfterEnv": [
+			"./app/test-utils/suiteSetup.js"
+		]
 	}
 }

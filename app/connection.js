@@ -1,11 +1,18 @@
-const Pool = require('pg-pool');
-const config = require('./config/db.config');
+// const Pool = require('pg-pool');
+const { Pool } = require('pg');
+const config = require('../config/db.config');
+// PostgresSQL Connecting:
+// https://node-postgres.com/features/connecting
 // Connecting to PostgreSQL with Node.js
 // https://www.thisdot.co/blog/connecting-to-postgresql-with-node-js
+// Postgress Commands:
+// https://www.postgresqltutorial.com/psql-commands/
 
 const pool = new Pool(config);
 
-module.exports.query = (text, values) => pool.query(text, values);
+module.exports = new Pool(config);
+
+// module.exports = new pool;
 
 /*
 module.exports = (callback) => {
