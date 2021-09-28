@@ -1,11 +1,14 @@
 # project-catwalk-related-service
 
-### Docker-compose:
+### Run Docker:
 
-- Run: `docker-compose up --renew-anon-volumes`
-- Close: `docker-compose down -v`
+```sh
+$ docker run \
+      --name postgres \
+      -e POSTGRES_PASSWORD=example \
+      -p 5432:5432 \
+      -d postgres
+$ docker exec -ti -u postgres postgres psql
+```
 
-### Run Tests:
-
-- Run: `pg-test start`
-- Stop: `pg-test stop`
+<!-- CREATE USER postgres WITH PASSWORD 'example'; -->
