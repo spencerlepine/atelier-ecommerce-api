@@ -1,5 +1,11 @@
 # project-catwalk-related-service
 
-### Run docker-compose:
+### Docker-compose:
 
-- `docker-compose up --renew-anon-volumes`
+- Run: `docker-compose up --renew-anon-volumes`
+- Close: `docker-compose down -v`
+
+### Run Tests:
+
+- Run: `pg-test start`
+- Stop: `pg-test stop`

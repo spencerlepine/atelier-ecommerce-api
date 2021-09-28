@@ -5,9 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon index.js",
-		"test": "PORT=6666 mocha ./*.test.js --exit",
+		"test": "PORT=6666 mocha **/*.test.js --exit",
 		"lint": "prettier --check .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"test:pg": "pg-test run -- node index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -29,14 +30,12 @@
 		"pg-pool": "^3.4.1"
 	},
 	"devDependencies": {
-		"chai": "^4.3.4",
+		"@databases/pg-test": "^3.0.1",
 		"eslint": "^7.32.0",
 		"eslint-config-airbnb-base": "^14.2.1",
 		"eslint-plugin-import": "^2.24.2",
 		"husky": "^4.3.8",
-		"lint-staged": "^11.1.2",
-		"mocha": "^9.1.2",
-		"supertest": "^6.1.6"
+		"lint-staged": "^11.1.2"
 	},
 	"husky": {
 		"hooks": {
@@ -64,7 +63,9 @@
 			"sourceType": "module"
 		},
 		"rules": {
-			"no-console": "off"
+			"no-console": "off",
+			"no-undef": "off",
+			"no-unused-vars": "off"
 		}
 	},
 	"prettier": {
@@ -74,5 +75,9 @@
 		"singleQuote": true,
 		"trailingComma": "es5",
 		"bracketSpacing": true
+	},
+	"jest": {
+		"globalSetup": "<rootDir>/node_modules/@databases/pg-test/jest/globalSetup.js",
+		"globalTeardown": "<rootDir>/node_modules/@databases/pg-test/jest/globalTeardown.js"
 	}
 }
