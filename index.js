@@ -1,5 +1,5 @@
 const express = require('express');
-const poolClient = require('./poolClient');
+const db = require('./connection');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -7,6 +7,7 @@ const app = express();
 // Parse request body
 app.use(express.json());
 
+/* ******************* */
 app.post('/note', (req, res, next) => {
   const { name, content } = req.body;
   if (!name || !content) {
@@ -16,7 +17,7 @@ app.post('/note', (req, res, next) => {
 
   const queryParams = [name, content];
   const query = 'INSERT INTO note (name, content) VALUES ($1, $2)';
-  return poolClient
+  return db
     .query(query, queryParams)
     .then(() => {
       console.log(`Note successfully inserted: ${name}`);
@@ -24,6 +25,7 @@ app.post('/note', (req, res, next) => {
     })
     .catch((err) => next(err));
 });
+/* ******************* */
 
 // Handle errors hardcoding status 400 for the sake of simplicity in our example
 app.use((err, req, res) => {

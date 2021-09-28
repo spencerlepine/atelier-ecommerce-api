@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon index.js",
-		"test": "PORT=6666 mocha **/*.test.js --exit",
+		"test": "TEST_DATABASE_URL=postgresql://postgres:sth@localhost/products jest",
 		"lint": "prettier --check .",
 		"format": "prettier --write .",
 		"test:pg": "pg-test run -- node index.js"
@@ -24,17 +24,18 @@
 	"dependencies": {
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
+		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
 		"nodemon": "^2.0.13",
 		"pg": "^8.7.1",
 		"pg-pool": "^3.4.1"
 	},
 	"devDependencies": {
-		"@databases/pg-test": "^3.0.1",
 		"eslint": "^7.32.0",
 		"eslint-config-airbnb-base": "^14.2.1",
 		"eslint-plugin-import": "^2.24.2",
 		"husky": "^4.3.8",
+		"jest": "^27.2.2",
 		"lint-staged": "^11.1.2"
 	},
 	"husky": {
@@ -75,9 +76,5 @@
 		"singleQuote": true,
 		"trailingComma": "es5",
 		"bracketSpacing": true
-	},
-	"jest": {
-		"globalSetup": "<rootDir>/node_modules/@databases/pg-test/jest/globalSetup.js",
-		"globalTeardown": "<rootDir>/node_modules/@databases/pg-test/jest/globalTeardown.js"
 	}
 }
