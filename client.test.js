@@ -1,17 +1,35 @@
-const Pool = require('pg-pool');
-const db = require('./connection');
+const pg = require('pg');
+const dotenv = require('dotenv');
 
-describe('Postgres Connection', () => {
-  beforeAll(async () => {
-    await db.query('BEGIN');
+dotenv.config();
+
+const connectionString = `postgres://${process.env.POSTGRES_USER}:\
+${process.env.POSTGRES_PASSWORD}@\
+${process.env.DATABASE_HOST}:\
+${process.env.DATABASE_PORT}/\
+${process.env.POSTGRES_DB}`;
+
+console.log(connectionString);
+
+describe('postgres test', () => {
+  let client;
+
+  beforeAll(() => {
+    client = new pg.Client(connectionString);
   });
 
-  afterAll(async () => {
-    await db.query('ROLLBACK');
+  afterAll(() => {
+    client.end();
   });
 
-  it('should test', async () => {
-    const { rows } = await db.query('SELECT 1 AS "result"');
-    expect(rows[0].result).toBe(1);
+  it('test connection', (done) => {
+    client.connect((err) => {
+      if (err) {
+        console.error(`error connecting: ${err.stack}`);
+        throw new Error(err);
+      }
+      console.log(`connected as id ${client.threadId}`);
+      done();
+    });
   });
 });
