@@ -4,8 +4,6 @@ const { Pool } = require('pg');
 const dbConfig = require('../../config/db.config');
 const modelInitializer = require('./init-models');
 
-const models = modelInitializer.initModels();
-
 const sequelize = new Sequelize(
   dbConfig.database,
   dbConfig.user,
@@ -23,6 +21,8 @@ const sequelize = new Sequelize(
     },
   },
 );
+
+const models = modelInitializer.initModels(sequelize);
 
 const db = {};
 
