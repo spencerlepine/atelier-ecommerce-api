@@ -10,3 +10,6 @@ https://levelup.gitconnected.com/building-an-express-api-with-sequelize-cli-and-
 
 SQL commands for Sequalize
 https://fengmk2.github.io/blog/2014/10/sql-to-sequelize-mapping-chart.html
+
+// https://github.com/sequelize/sequelize-auto
+npx sequelize-auto -h 127.0.0.1 -d postgres -u postgres -x example -p 5432  --dialect postgres -c ./config/db.config.js -o ./app/models -t products
