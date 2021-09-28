@@ -1,40 +1,60 @@
-name: test
+name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+    - main
   pull_request:
-    branches: [ master ]
+    branches:
+    - main
 
 env:
   CI: true
 
 jobs:
 
-  test:
-    environment: production_environment
+  ci:
     name: Node ${{ matrix.node }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: false
       matrix:
-        # node: [12, 14]
         node: [14]
-        # os: [ubuntu-latest, windows-latest]
         os: [ubuntu-latest]
+        database-name:
+        - postgres
+        database-password:
+        - example
+        database-user:
+        - postgres
+        database-host:
+        - 127.0.0.1
+        database-port:
+        - 5432
 
     steps:
-      - name: ♻️ Clone repository
-        uses: actions/checkout@v2
+    - name: ♻️ Check out Git Repository
+      uses: actions/checkout@v2
 
-      - name:	🔖  Set Node.js version
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
+    - name: Config Postgress
+      uses: ./Docker/
+      with:
+        postgresql password: example
+        postgresql init scripts: ../config
 
-      - name: ⬇️  Install npm dependencies
-        run: npm install # switch to `npm ci` when Node.js 6 support is dropped
+    - name: 🔖  Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: ✅  Run tests
-        run: npm run test
+    - name: ⬇️  Install npm dependencies
+      run: npm install
+
+    - name: ✅  Run tests
+      env:
+        POSTGRES_USER: ${{ matrix.database-user }}
+        POSTGRES_PASSWORD: ${{ matrix.database-password }}
+        DATABASE_HOST: ${{ matrix.database-host }}
+        DATABASE_PORT: ${{ matrix.database-port }}
+        POSTGRES_DB: ${{ matrix.database-name }}
+      run: npm run test
