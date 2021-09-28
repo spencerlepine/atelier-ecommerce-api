@@ -1,4 +1,6 @@
-# project-catwalk-related-service
+# Project Catwalk Related Service API
+
+[![CI](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml)
 
 ### Run the Docker container:
 
