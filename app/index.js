@@ -19,7 +19,8 @@ app.use((err, req, res) => {
     res.sendStatus(400);
   }
 });
-
-module.exports = app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+module.exports = server;
