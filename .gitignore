@@ -24,6 +24,7 @@ node_modules/
 .env.test
 
 # misc
+csvFiles/
 .github
 .husky
 .DS_Store

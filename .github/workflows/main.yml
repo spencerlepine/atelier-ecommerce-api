@@ -36,7 +36,7 @@ jobs:
     - name: ♻️ Check out Git Repository
       uses: actions/checkout@v2
 
-    - name: Config Postgress
+    - name: 🐘 Config Postgres
       uses: ./Docker/
       with:
         postgresql password: example
