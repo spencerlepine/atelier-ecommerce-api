@@ -1,7 +1,10 @@
-// // Using Node streams to make a .csv cleaner
-// // https://dev.to/zluther89/using-node-streams-to-make-a-csv-cleaner-148m//
+/*
+ * Clean CSV file lines/errors
+ * Generate a new CSV file
+ */
 
-// // Example: OUTPUT_FOLDER=csvFiles CSV_FOLDER=.data TARGET_FILE=photos node csv-cleaner.js
+// Using Node streams to make a .csv cleaner
+// https://dev.to/zluther89/using-node-streams-to-make-a-csv-cleaner-148m//
 
 const csv = require('csv-parser');
 const path = require('path');

@@ -1,10 +1,6 @@
 /*
  * Extract + Transform + Load
  * CSV Data to PostgreSQL
- *
- * command (one line):
- *  OUTPUT_FOLDER=../csvFilesClean CSV_FOLDER=../csvFiles
- *    TARGET_FILE=myTableName node /path/to/helpers/extractTransformLoadFiles.js
  */
 
 // Read BULK Loading in Postgres:
