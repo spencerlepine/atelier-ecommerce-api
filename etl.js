@@ -68,11 +68,12 @@ const executeQuery = (targetTable) => {
   // eslint-disable-next-line consistent-return
   execute(targetTable, (err) => {
     if (err) return console.log(`Error in Truncate Table: ${err}`);
-    const stream = client.query(copyFrom(`COPY ${targetTable} FROM STDIN`));
+    const stream = client.query(
+      copyFrom(`COPY ${targetTable} FROM STDIN DELIMITER ',' CSV HEADER`),
+    );
     const fileStream = fs.createReadStream(inputFile);
 
     // Debug the stream input
-    stream.on('data', (chunk) => console.log(chunk.toString('utf8')));
     // fileStream.on('data', (chunk) => console.log(chunk.toString('utf8')));
 
     fileStream.on('error', (error) => {
