@@ -15,96 +15,97 @@ const path = require('path');
 const readline = require('readline');
 const { Pool, Client } = require('pg');
 const dotenv = require('dotenv');
-// const copyFrom = require('pg-copy-streams').from;
 const config = require('../../config/db.config');
+
+const DELIMITER = process.env.DELIMITER || ',';
 
 // Access the enviroment variables
 dotenv.config();
 
-const targetFileName = process.env.TARGET_FILE;
-if (!targetFileName) {
+const TARGET_FILE_NAME = process.env.TARGET_FILE;
+if (!TARGET_FILE_NAME) {
   throw new Error(
     'please specify CSV file name: "TARGET_FILE=customers ... node helperFile.js"',
   );
 }
 
-const csvFolder = process.env.CSV_FOLDER;
+const csvFolder = process.env.OUTPUT_FOLDER;
+const inputFile = path.join(
+  __dirname,
+  `../${csvFolder}/${TARGET_FILE_NAME}.csv`,
+);
+const table = `${TARGET_FILE_NAME}`;
 
-const { connectionString } = config;
-// const inputFile = path.join(__dirname, `${csvFolder}/${targetFileName}.csv`);
-const inputFile = path.join(__dirname, `../${csvFolder}/${targetFileName}.csv`);
-const table = `${targetFileName}`;
-const client = new Client({ connectionString });
+const client = new Client({ connectionString: config.connectionString });
 client.connect();
 
-// const executeQuery = (targetTable) => {
-//   const execute = (target, callback) => {
-//     client.query(
-//       `BEGIN;\
-//       ALTER TABLE ${target} DISABLE TRIGGER ALL;\
-//       Truncate ${target} CASCADE;\
-//       ALTER TABLE ${target} ENABLE TRIGGER ALL;\
-//       COMMIT;`,
-//       (err) => {
-//         if (err) {
-//           client.end();
-//           callback(err);
-//         } else {
-//           console.log(` * Truncated ${target}`);
-//           callback(null, target);
-//         }
-//       },
-//     );
-//   };
-//   // eslint-disable-next-line consistent-return
-//   execute(targetTable, (err) => {
-//     if (err) return console.log(` > [${targetTable}] FAILED truncating: ${err}\n`);
-//     const stream = client.query(
-//       copyFrom(`COPY ${targetTable} FROM STDIN DELIMITER ',' CSV HEADER`),
-//     );
-//     const fileStream = fs.createReadStream(inputFile);
+const loadTableEntry = (tableName = 'missingTableName', headers, values) => {
+  const loadQuery = `INSERT INTO ${tableName}(${headers.join(
+    ',',
+  )}) VALUES ${values}`;
 
-//     // HERE: failing to copy over data from CSV
-//     // client.query(`COPY ${targetTable} FROM ${inputFile} DELIMITER ',' CSV HEADER`);
-//     // const copyQuery = '\\COPY product FROM
-//     // \'/data-clean/product.csv\' DELIMITER \',\' CSV HEADER';
-//     // client.query(copyQuery, (res) => {
-//     //   console.log(res);
-//     // });
+  client.query(loadQuery, (err) => {
+    if (err) {
+      client.end();
+      console.log(` [FAILED] to load ${values}`);
+      // callback(err);
+    } else {
+      console.log(` * LOADED ${values}`);
+      // callback(null, target);
+    }
+  });
+};
 
-//     fileStream.on('error', (error) => {
-//       console.log(`Error in creating read stream ${error}\n`);
-//     });
+// Reading the CSV file line by line
+const readFileLines = (rl) => {
+  let headers;
 
-//     stream.on('error', (error) => {
-//       console.log(` > [${targetTable}] FAILED creating stream ${error}\n`);
-//       client.end();
-//     });
-//     stream.on('end', () => {
-//       console.log(` * Completed loading data into ${targetTable} TABLE\n`);
-//       client.end();
-//     });
-//     fileStream.pipe(stream);
-//   });
-// };
+  rl.on('line', (line) => {
+    console.log(line);
+    const columns = line.split(DELIMITER);
+    if (!headers) {
+      headers = columns.slice();
+      console.log(`* FOUND headers: [ ${headers} ]`);
+    } else {
+      loadTableEntry(TARGET_FILE_NAME, headers, columns);
+    }
+  }).on('close', () => {
+    console.log(`* LOADED Successfully: ${TARGET_FILE_NAME}.csv\n`);
+    process.exit(1);
+  });
+};
 
-// executeQuery(table);
+const truncateTable = (target, nextCallback) => {
+  const truncateQuery = `\
+    BEGIN;\
+    ALTER TABLE ${target} DISABLE TRIGGER ALL;\
+    Truncate ${target} CASCADE;\
+    ALTER TABLE ${target} ENABLE TRIGGER ALL;\
+    COMMIT
+  `;
+
+  client.query(truncateQuery, (err) => {
+    if (err) {
+      client.end();
+      nextCallback(err);
+    } else {
+      console.log(` - SUCCESS truncated ${target}`);
+      nextCallback(null, target);
+    }
+  });
+};
 
 // eslint-disable-next-line import/order
 const lineReader = require('readline').createInterface({
   input: fs.createReadStream(inputFile),
 });
 
-let isFirstLine = true;
-lineReader
-  .on('line', (line) => {
-    console.log(line);
-    isFirstLine = false;
-  })
-  .on('close', () => {
-    console.log(`COPIED CSV file: ${targetFileName}.csv`);
-    console.log(lineReader.line);
-  })
-  .on('error', (err) => {
-    console.log(err);
-  });
+// Truncate the table, then load the data
+truncateTable(TARGET_FILE_NAME, (err, result) => {
+  if (err) {
+    console.log(` - FAILED: unable to truncate ${TARGET_FILE_NAME} table`);
+  } else {
+    console.log(` - SUCCESS: truncated the ${TARGET_FILE_NAME} table`);
+    readFileLines(lineReader);
+  }
+});

@@ -3,9 +3,9 @@
 ## Directory structure:
 
 |- data/
-|- csvFiles/
-|- csvFilesClean/
-|- helpers/
+. |- csvFiles/
+. |- csvFilesClean/
+. |- helpers/
 
 ## Clean CSV files
 
