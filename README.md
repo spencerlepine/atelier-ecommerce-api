@@ -2,30 +2,49 @@
 
 [![CI](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml)
 
-### Run the Docker container:
+## 📦 Technologies:
+
+- [PostgreSQL](https://www.postgresql.org/)
+- [Express](https://expressjs.com/)
+- [Jest](https://jestjs.io/)
+
+## Setup:
 
 ```sh
-$ docker run \
-      --name postgres \
-      -e POSTGRES_PASSWORD=example \
-      -p 5432:5432 \
-      -d postgres
+$ cp .env.sample .env
+$ npm install
+$ npm start
 ```
 
-<!-- docker exec -ti -u postgres postgres psql -->
-<!-- CREATE USER postgres WITH PASSWORD 'example'; -->
+1. Run the Docker container:
+   Run a `postgres` Docker image
 
-### Connect Postgres Client
+   ```sh
+   $ docker run \
+         --name postgres \
+         -e POSTGRES_PASSWORD=example \
+         -p 5432:5432 \
+         -d postgres
+   ```
 
-```js
-// Create a "postgres" connection string
-const connectionString = `postgres://${process.env.POSTGRES_USER}:\
-${process.env.POSTGRES_PASSWORD}@\
-${process.env.DATABASE_HOST}:\
-${process.env.DATABASE_PORT}/\
-${process.env.POSTGRES_DB}`;
-...
-// Create a client instance
-let client = new pg.Client(connectionString);
-module.exports.query = (text, values) => client.query(text, values);
-```
+2. Enter the Docker Postgres Image:
+   Access postgres CLI, and run the `init.sql` commands
+
+   ```sh
+   $ docker exec -ti -u postgres postgres psql
+   psql (13.4 (Debian 13.4-1.pgdg110+1))
+   Type "help" for help.
+
+   postgres=# *PASTE <config/init.sql>*
+   ```
+
+3. Make sure Postgress has a user matching .env credentials
+   Create a USER matching configuration credentials
+
+   ```sh
+   postgres=# CREATE USER postgres WITH PASSWORD 'example';
+   OR
+   postgres=# ALTER USER postgres WITH PASSWORD 'example';
+   ```
+
+[spencerlepine.com](https://www.spencerlepine.com) &nbsp;&middot;&nbsp; GitHub [@spencerlepine](https://github.com/spencerlepine) &nbsp;&middot;&nbsp; Twitter [@spencerlepine](http://twitter.com/spencerlepine)
