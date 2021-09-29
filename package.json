@@ -38,7 +38,8 @@
 		"husky": "^4.3.8",
 		"jest": "^27.2.2",
 		"lint-staged": "^11.1.2",
-		"sequelize-test-helpers": "^1.4.2"
+		"sequelize-test-helpers": "^1.4.2",
+		"sinon": "^11.1.2"
 	},
 	"husky": {
 		"hooks": {
