@@ -19,6 +19,7 @@ app.use((err, req, res) => {
     res.sendStatus(400);
   }
 });
+
 const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
