@@ -47,8 +47,8 @@ $ npm start
    postgres=# ALTER USER postgres WITH PASSWORD 'example';
    ```
 
-[spencerlepine.com](https://www.spencerlepine.com) &nbsp;&middot;&nbsp; GitHub [@spencerlepine](https://github.com/spencerlepine) &nbsp;&middot;&nbsp; Twitter [@spencerlepine](http://twitter.com/spencerlepine)
-
 ## Resources:
 
 - [Ticketing System (Trello Board)](https://trello.com/b/Ua5qkKmA/trello-system-design-capstone)
+
+[spencerlepine.com](https://www.spencerlepine.com) &nbsp;&middot;&nbsp; GitHub [@spencerlepine](https://github.com/spencerlepine) &nbsp;&middot;&nbsp; Twitter [@spencerlepine](http://twitter.com/spencerlepine)
