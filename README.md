@@ -49,6 +49,7 @@ $ npm start
 
 ## Resources:
 
+- [Engineering Journal](https://docs.google.com/document/d/1pTTeDCzcKNozd9dljexVn-PrXwzoTBS0hby2dOZ95yw)
 - [Ticketing System (Trello Board)](https://trello.com/b/Ua5qkKmA/trello-system-design-capstone)
 
 [spencerlepine.com](https://www.spencerlepine.com) &nbsp;&middot;&nbsp; GitHub [@spencerlepine](https://github.com/spencerlepine) &nbsp;&middot;&nbsp; Twitter [@spencerlepine](http://twitter.com/spencerlepine)
