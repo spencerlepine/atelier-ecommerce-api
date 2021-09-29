@@ -1,3 +1,7 @@
+# csv data
+csvFiles
+csvFilesClean
+
 # Logs
 logs
 *.log
@@ -24,7 +28,7 @@ node_modules/
 .env.test
 
 # misc
-csvFiles/
+TODO
 .github
 .husky
 .DS_Store

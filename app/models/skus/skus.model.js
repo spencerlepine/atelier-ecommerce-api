@@ -16,12 +16,12 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
         key: 'id',
       },
     },
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     size: {
       type: DataTypes.STRING(4),
+      allowNull: false,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
