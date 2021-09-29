@@ -7,7 +7,9 @@
 		"start": "nodemon app/index.js",
 		"test": "jest --no-cache --detectOpenHandles --runInBand --forceExit",
 		"lint": "prettier --check .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"csv:load": "node data/helpers/extractTransformLoadFiles.js",
+		"csv:clean": "node data/helpers/csvFileCleaner.js"
 	},
 	"repository": {
 		"type": "git",

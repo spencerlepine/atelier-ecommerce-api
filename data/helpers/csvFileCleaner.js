@@ -6,6 +6,10 @@
 const csv = require('csv-parser');
 const path = require('path');
 const fs = require('fs');
+const dotenv = require('dotenv');
+
+// Access the enviroment variables
+dotenv.config();
 
 /*
  * Set up the file paths
@@ -21,28 +25,23 @@ if (!targetFileName) {
   );
 }
 
-const outputFolder = process.env.CSV_FOLDER;
-if (!outputFolder) {
-  throw new Error(
-    'please specify CSV folder name: "CSV_FOLDER=data ... node index.js"',
-  );
-}
+const outputFolder = path.join(__dirname, `../${process.env.OUTPUT_FOLDER}`);
 if (!fs.existsSync(outputFolder)) {
   fs.mkdirSync(outputFolder);
 }
 
-const cleanFolder = process.env.OUTPUT_FOLDER;
-if (!cleanFolder) {
-  throw new Error(
-    'please specify CSV OUTPUT folder name: "OUTPUT_FOLDER=data-clean ... node index.js"',
-  );
-}
+const csvInputFolder = process.env.CSV_FOLDER;
 
-const inputFile = path.join(__dirname, `${outputFolder}/${targetFileName}.csv`);
-const outputFile = path.join(
+const inputFile = path.join(
   __dirname,
-  `${outputFolder}/${targetFileName}.csv`,
+  `../${csvInputFolder}/${targetFileName}.csv`,
 );
+// path.join(__dirname, `${outputFolder}/${targetFileName}.csv`);
+const outputFile = path.join(`${outputFolder}/${targetFileName}.csv`);
+// const outputFile = path.join(
+//   __dirname,
+//   `${outputFolder}/${targetFileName}.csv`,
+// );
 
 /*
  * CLEAN + TRANSFORM a CSV line string
