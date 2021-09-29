@@ -8,11 +8,6 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    campus: {
-      type: DataTypes.STRING(8),
-      allowNull: true,
-      defaultValue: 'hr-lax',
-    },
     name: {
       type: DataTypes.STRING(50),
       allowNull: false,
@@ -35,11 +30,13 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: Sequelize.NOW,
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: Sequelize.NOW,
     },
   },
   {

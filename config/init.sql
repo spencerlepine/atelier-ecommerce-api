@@ -10,18 +10,17 @@
 --
 -- ---
 
-DROP TABLE IF EXISTS "product";
+DROP TABLE IF EXISTS "product" CASCADE;
 
 CREATE TABLE "product" (
   "id" INT NOT NULL,
-  "campus" VARCHAR(8) NULL DEFAULT 'hr-lax',
   "name" VARCHAR(50) NOT NULL,
   "slogan" VARCHAR(70) NOT NULL,
   "description" VARCHAR(325) NOT NULL,
   "category" VARCHAR(15) NOT NULL,
   "default_price" VARCHAR(8) NOT NULL,
-  "created_at" TIMESTAMP NOT NULL,
-  "updated_at" TIMESTAMP NOT NULL,
+  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY ("id")
 );
 
@@ -30,7 +29,7 @@ CREATE TABLE "product" (
 --
 -- ---
 
-DROP TABLE IF EXISTS "styles";
+DROP TABLE IF EXISTS "styles" CASCADE;
 
 CREATE TABLE "styles" (
   "id" INTEGER NOT NULL,
@@ -44,7 +43,7 @@ CREATE TABLE "styles" (
 --
 -- ---
 
-DROP TABLE IF EXISTS "features";
+DROP TABLE IF EXISTS "features" CASCADE;
 
 CREATE TABLE "features" (
   "id" INTEGER NOT NULL,
@@ -59,7 +58,7 @@ CREATE TABLE "features" (
 --
 -- ---
 
-DROP TABLE IF EXISTS "style";
+DROP TABLE IF EXISTS "style" CASCADE;
 
 CREATE TABLE "style" (
   "id" INTEGER NOT NULL,
@@ -76,7 +75,7 @@ CREATE TABLE "style" (
 --
 -- ---
 
-DROP TABLE IF EXISTS "photos";
+DROP TABLE IF EXISTS "photos" CASCADE;
 
 CREATE TABLE "photos" (
   "id" INTEGER NOT NULL,
@@ -91,13 +90,13 @@ CREATE TABLE "photos" (
 --
 -- ---
 
-DROP TABLE IF EXISTS "skus";
+DROP TABLE IF EXISTS "skus" CASCADE;
 
 CREATE TABLE "skus" (
   "id" INTEGER NOT NULL,
   "style_id" INTEGER NOT NULL,
-  "quantity" INTEGER NOT NULL,
   "size" VARCHAR(4) NOT NULL,
+  "quantity" INTEGER NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -106,7 +105,7 @@ CREATE TABLE "skus" (
 --
 -- ---
 
-DROP TABLE IF EXISTS "related";
+DROP TABLE IF EXISTS "related" CASCADE;
 
 CREATE TABLE "related" (
   "id" INTEGER NOT NULL,
