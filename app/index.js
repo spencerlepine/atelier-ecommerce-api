@@ -20,6 +20,10 @@ app.use((err, req, res) => {
   }
 });
 
-module.exports = app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+module.exports = {
+  close: () => server.close(),
+};
