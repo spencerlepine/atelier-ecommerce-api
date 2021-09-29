@@ -5,13 +5,15 @@
  * command: $ CSV_FOLDER=myCSVFolder TARGET_FILE=myTableName node etl.js
  *
  * FILES:
- *   <rootDir>/config/etl.js
+ *   <rootDir>/etl.js
  *   <rootDir>/config/db.config.js
  *   <rootDir>/<CSV_FOLDER>/<TARGET_FILE>.csv
  */
 
 // Read BULK Loading in Postgres:
 // https://www.mydatahack.com/bulk-loading-postgres-with-node-js/
+
+// Example: CSV_FOLDER=csvFiles TARGET_FILE=photos node etl.js
 
 // Import required modules
 const fs = require('fs');
