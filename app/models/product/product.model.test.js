@@ -11,7 +11,6 @@ const ProductModel = require('./product.model');
 
 const expectedFields = [
   'id',
-  'campus',
   'name',
   'slogan',
   'description',

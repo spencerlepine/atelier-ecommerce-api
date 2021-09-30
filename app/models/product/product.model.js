@@ -8,37 +8,24 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    campus: {
-      type: DataTypes.STRING(8),
-      allowNull: true,
-      defaultValue: 'hr-lax',
-    },
     name: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     slogan: {
-      type: DataTypes.STRING(70),
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING(325),
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     category: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     default_price: {
-      type: DataTypes.STRING(8),
-      allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
@@ -46,7 +33,7 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
     sequelize,
     tableName: 'product',
     schema: 'public',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: 'product_pkey',
