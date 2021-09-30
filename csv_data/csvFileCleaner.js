@@ -61,10 +61,12 @@ const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
     return value;
   };
 
+  const replaceNull = (value) => (value === 'null' ? '' : value);
+
   const formattedCols = columns.map((value) => {
     let formatted = value;
     formatted = terminateValQuotes(value);
-    // formatted = trimString(value, maxLength);
+    formatted = replaceNull(value);
     return formatted;
   });
 

@@ -48,7 +48,7 @@ CREATE TABLE "style" (
   "id" INTEGER NOT NULL,
   "name" VARCHAR(100) NOT NULL,
   "original_price" VARCHAR(100) NOT NULL,
-  "sale_price" INTEGER NOT NULL DEFAULT NULL,
+  "sale_price" INTEGER DEFAULT NULL,
   "default?" BYTEA NOT NULL DEFAULT 'true',
   "style_id" INTEGER NOT NULL,
   PRIMARY KEY ("id")
@@ -79,7 +79,7 @@ DROP TABLE IF EXISTS "skus" CASCADE;
 CREATE TABLE "skus" (
   "id" INTEGER NOT NULL,
   "style_id" INTEGER NOT NULL,
-  "size" VARCHAR(4) NOT NULL,
+  "size" VARCHAR(20) NOT NULL,
   "quantity" INTEGER NOT NULL,
   PRIMARY KEY ("id")
 );
