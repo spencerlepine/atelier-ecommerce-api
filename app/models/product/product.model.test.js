@@ -16,8 +16,6 @@ const expectedFields = [
   'description',
   'category',
   'default_price',
-  'created_at',
-  'updated_at',
 ];
 
 describe('Product Model', () => {
