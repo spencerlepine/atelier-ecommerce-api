@@ -14,27 +14,11 @@ DROP TABLE IF EXISTS "product" CASCADE;
 
 CREATE TABLE "product" (
   "id" INT NOT NULL,
-  "name" VARCHAR(50) NOT NULL,
-  "slogan" VARCHAR(70) NOT NULL,
-  "description" VARCHAR(325) NOT NULL,
-  "category" VARCHAR(15) NOT NULL,
-  "default_price" VARCHAR(8) NOT NULL,
-  "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY ("id")
-);
-
--- ---
--- Table 'styles'
---
--- ---
-
-DROP TABLE IF EXISTS "styles" CASCADE;
-
-CREATE TABLE "styles" (
-  "id" INTEGER NOT NULL,
-  "product_id" INT NOT NULL,
-  "results" INTEGER NOT NULL,
+  "name" VARCHAR(100) NOT NULL,
+  "slogan" VARCHAR(1000) NOT NULL,
+  "description" VARCHAR(1000) NOT NULL,
+  "category" VARCHAR(100) NOT NULL,
+  "default_price" INTEGER NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -48,8 +32,8 @@ DROP TABLE IF EXISTS "features" CASCADE;
 CREATE TABLE "features" (
   "id" INTEGER NOT NULL,
   "product_id" INT NOT NULL,
-  "feature" VARCHAR(40) NOT NULL,
-  "value" VARCHAR(40) NOT NULL,
+  "feature" VARCHAR(100) NOT NULL,
+  "value" VARCHAR(100) NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -62,8 +46,8 @@ DROP TABLE IF EXISTS "style" CASCADE;
 
 CREATE TABLE "style" (
   "id" INTEGER NOT NULL,
-  "name" VARCHAR(40) NOT NULL,
-  "original_price" VARCHAR(8) NOT NULL,
+  "name" VARCHAR(100) NOT NULL,
+  "original_price" VARCHAR(100) NOT NULL,
   "sale_price" INTEGER NOT NULL DEFAULT NULL,
   "default?" BYTEA NOT NULL DEFAULT 'true',
   "style_id" INTEGER NOT NULL,
@@ -80,8 +64,8 @@ DROP TABLE IF EXISTS "photos" CASCADE;
 CREATE TABLE "photos" (
   "id" INTEGER NOT NULL,
   "style_id" INTEGER NOT NULL,
-  "thumbnail_url" VARCHAR(300) NOT NULL,
-  "url" VARCHAR(250) NULL DEFAULT NULL,
+  "thumbnail_url" VARCHAR(1000) NOT NULL,
+  "url" VARCHAR(1000) NULL DEFAULT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -118,8 +102,6 @@ CREATE TABLE "related" (
 -- Foreign Keys
 -- ---
 
-ALTER TABLE "styles" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
-ALTER TABLE "styles" ADD FOREIGN KEY (results) REFERENCES "style" ("id");
 ALTER TABLE "features" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
 ALTER TABLE "photos" ADD FOREIGN KEY (style_id) REFERENCES "style" ("id");
 ALTER TABLE "skus" ADD FOREIGN KEY (style_id) REFERENCES "style" ("id");
@@ -130,7 +112,6 @@ ALTER TABLE "related" ADD FOREIGN KEY (current_product_id) REFERENCES "product" 
 -- ---
 
 -- ALTER TABLE "product" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE "styles" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE "features" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE "related" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE "style" ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -144,8 +125,6 @@ ALTER TABLE "related" ADD FOREIGN KEY (current_product_id) REFERENCES "product" 
 
 -- INSERT INTO "product" ("id","campus","name","slogan","description","category","default_price","created_at","updated_at") VALUES
 -- ('','','','','','','','','');
--- INSERT INTO "styles" ("id","product_id","results") VALUES
--- ('','','');
 -- INSERT INTO "features" ("id","product_id","feature","value") VALUES
 -- ('','','','');
 -- INSERT INTO "related" ("id","related") VALUES

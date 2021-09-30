@@ -7,7 +7,9 @@
 		"start": "nodemon app/index.js",
 		"test": "jest --no-cache --detectOpenHandles --runInBand --forceExit",
 		"lint": "prettier --check .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"csv:clean-file": "node csv_data/csvFileCleaner.js",
+		"csv:clean-all": "for i in csv_data/*.csv; do filename=$(basename \"$fullfilename\"); echo \"TARGET_FILE=$filename npm run csv:clean-file\";done"
 	},
 	"repository": {
 		"type": "git",
