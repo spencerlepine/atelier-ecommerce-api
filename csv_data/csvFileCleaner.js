@@ -18,6 +18,7 @@ dotenv.config();
  * Set up the file paths
  */
 const DELIMITER = process.env.DELIMITER || ',';
+const QOUTE = process.env.QUOTE || '"';
 const POST_DELIMITER = process.env.POST_DELIMITER || '|';
 
 const camelToSnakeCase = (str) => str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
@@ -45,7 +46,13 @@ const outputFile = path.join(
  * CLEAN + TRANSFORM a CSV line string
  */
 const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
-  const columns = lineStr.split(delimiter);
+  // Use special regex to ignore a DELIMITER within QOUTE, eg "Let's eat, grandma"
+  const delimiterRegex = new RegExp(
+    `${DELIMITER}(?=(?:[^${QOUTE}]*${QOUTE}[^${QOUTE}]*${QOUTE})*[^${QOUTE}]*$)`,
+  );
+  const columns = lineStr
+    .split(delimiterRegex)
+    .filter((val) => val !== undefined);
 
   const terminateValQuotes = (value) => {
     if (/["\n]/.test(value)) {
