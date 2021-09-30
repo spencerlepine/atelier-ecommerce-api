@@ -4,9 +4,15 @@
 
 ## 📦 Technologies:
 
-- [PostgreSQL](https://www.postgresql.org/)
+- [Axios](https://www.npmjs.com/package/axios)
+- [Postgres](https://www.postgresql.org/)
 - [Express](https://expressjs.com/)
+- [Node.js](https://nodejs.org/en/)
 - [Jest](https://jestjs.io/)
+
+## More Tools
+
+- [k6]()
 
 ## Setup:
 
@@ -16,7 +22,20 @@ $ npm install
 $ npm start
 ```
 
-1. Run the Docker container:
+### Match the PostgreSQL User
+
+Make sure Postgress has a user matching .env credentials
+Create a USER matching configuration credentials
+
+```sh
+psql=# CREATE USER postgres WITH PASSWORD 'example';
+OR
+psql=# ALTER USER postgres WITH PASSWORD 'example';
+```
+
+### Run a Docker container
+
+1. Start the Docker container:
    Run a `postgres` Docker image
 
    ```sh
@@ -35,20 +54,16 @@ $ npm start
    psql (13.4 (Debian 13.4-1.pgdg110+1))
    Type "help" for help.
 
-   postgres=# *PASTE <config/init.sql>*
+   psql=# *PASTE <config/init.sql>*
    ```
-
-3. Make sure Postgress has a user matching .env credentials
-   Create a USER matching configuration credentials
-
-   ```sh
-   postgres=# CREATE USER postgres WITH PASSWORD 'example';
-   OR
-   postgres=# ALTER USER postgres WITH PASSWORD 'example';
-   ```
-
-[spencerlepine.com](https://www.spencerlepine.com) &nbsp;&middot;&nbsp; GitHub [@spencerlepine](https://github.com/spencerlepine) &nbsp;&middot;&nbsp; Twitter [@spencerlepine](http://twitter.com/spencerlepine)
 
 ## Resources:
 
-- [Ticketing System (Trello Board)](https://trello.com/b/Ua5qkKmA/trello-system-design-capstone)
+- [ ] Engineering Journal: [Google Doc](https://docs.google.com/document/d/1pTTeDCzcKNozd9dljexVn-PrXwzoTBS0hby2dOZ95yw)
+- [ ] Source Code: [GitHub Repo](https://github.com/sdc-bareminimum/project-catwalk-related-service)
+- [ ] Notes: [Notion](https://www.notion.so/Front-End-Capstone-f9b9572fe78641eea624557e7dffc66)
+- [ ] Ticketing System: [Trello Board:](https://trello.com/b/Ua5qkKmA/trello-system-design-capstone)
+
+---
+
+[spencerlepine.com](https://www.spencerlepine.com) &nbsp;&middot;&nbsp; GitHub [@spencerlepine](https://github.com/spencerlepine) &nbsp;&middot;&nbsp; Twitter [@spencerlepine](http://twitter.com/spencerlepine)
