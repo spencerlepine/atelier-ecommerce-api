@@ -1,10 +1,17 @@
 FROM docker:stable
 
+# COPY ./config/*.sql /docker-entrypoint-initdb.d/
+# ADD ./config/init.sql /docker-entrypoint-initdb.d
+# RUN chmod a+r /docker-entrypoint-initdb.d/*
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 
+# FROM postgres:latest
+
+# ADD product.csv bin/myFile.py
 
 # OLD DOCKER SETUP:
 # https://sherryhsu.medium.com/how-to-import-csv-into-docker-postgresql-database-22d56e2a1117

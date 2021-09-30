@@ -9,41 +9,31 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     slogan: {
-      type: DataTypes.STRING(70),
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING(325),
+      type: DataTypes.STRING(1000),
       allowNull: false,
     },
     category: {
-      type: DataTypes.STRING(15),
+      type: DataTypes.STRING(100),
       allowNull: false,
     },
     default_price: {
-      type: DataTypes.STRING(8),
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.NOW,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.NOW,
     },
   },
   {
     sequelize,
     tableName: 'product',
     schema: 'public',
-    timestamps: false,
+    timestamps: true,
     indexes: [
       {
         name: 'product_pkey',
