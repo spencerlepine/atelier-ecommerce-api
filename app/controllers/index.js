@@ -1,6 +1,6 @@
 const { product: Products } = require('../models');
 
-const fetchProduct = async (req, res) => {
+const fetchProductById = async (req, res) => {
   try {
     const { product_id: id } = req.params;
     const product = await Products.findByPk(id);
@@ -14,6 +14,6 @@ const fetchProduct = async (req, res) => {
 
 module.exports = {
   products: {
-    fetchProduct,
+    fetchProductById,
   },
 };
