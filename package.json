@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon app/index.js",
-		"test": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit --testTimeout=10000",
-		"test:watch": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit --testTimeout=10000 --onlyChanged --watch",
+		"test": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit",
+		"test:watch": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit --onlyChanged --watch",
 		"pretest": "cross-env NODE_ENV=test npm run db:reset",
 		"db:create:test": "cross-env NODE_ENV=test npm run sequelize db:create",
 		"old:db:reset": "npm run sequelize db:drop && npm run sequelize db:create && npm run sequelize db:migrate && npm run sequelize db:seed:all",
