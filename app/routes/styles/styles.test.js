@@ -17,7 +17,7 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
   });
 
   it('should return object', () => {
-    console.log(res.body);
+    expect(res.body).toBeDefined();
     expect(res.body instanceof Object).toBeTruthy();
   });
 
@@ -31,9 +31,9 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
   });
 
   describe('Styles Results Key', () => {
-    const { results } = res.body;
-
     it('should be an array of objects', () => {
+      const { results } = res.body;
+
       expect(results instanceof Array).toBeTruthy();
 
       const validDataTypes = results.every((val) => val instanceof Object);
@@ -51,70 +51,71 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
         skus: {},
       };
 
-      results.forEach((styleObj) => {
-        it('sale price could be null or a string', () => {
+      it('sale price could be null or a string', () => {
+        const { results } = res.body;
+        results.forEach((styleObj) => {
           const validSalePrice = styleObj.sale_price === null || typeof styleObj.sale_price === 'string';
           expect(validSalePrice).toBeTruthy();
         });
+      });
 
-        it('objects should contain all valid keys', () => {
+      it('should contain valid key/value pairs', () => {
+        const { results } = res.body;
+        results.forEach((styleObj) => {
           Object.keys(sampleStyleObj).forEach((key) => {
             expect(styleObj).toHaveProperty(key);
 
-            let matchingType = styleObj[key].constructor === sampleStyleObj[key].constructor;
-            if (key === 'sale_price') {
-              matchingType = (
-                styleObj[key] === 'null' || typeof styleObj[key] === 'string'
-              );
-            }
+            // Key: 'sale_price' could be NULL or a string
+            const constructorA = (!!styleObj[key] || '').constructor;
+            const constructorB = (!!sampleStyleObj[key] || '').constructor;
 
-            expect(matchingType).toBeTruthy();
+            expect(constructorA === constructorB).toBeTruthy();
           });
-        });
 
-        describe('Photos Array', () => {
-          const { photos } = styleObj;
-          const samplePhotoObj = {
-            thumbnail_url:
-              'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
-            url: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
-          };
-          const expression = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi;
-          const urlRegex = new RegExp(expression);
+          describe('Photos Array', () => {
+            const { photos } = styleObj;
+            const samplePhotoObj = {
+              thumbnail_url:
+                'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+              url: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
+            };
+            const expression = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi;
+            const urlRegex = new RegExp(expression);
 
-          it('photos array contains valid objects', () => {
-            photos.forEach((photoObj) => {
-              Object.keys(samplePhotoObj).forEach((key) => {
-                expect(photoObj).toHaveProperty(key);
-                const matchingType = (
-                  photoObj[key].constructor === samplePhotoObj[key].constructor
-                );
-                expect(matchingType).toBeTruthy();
+            it('photos array contains valid objects', () => {
+              photos.forEach((photoObj) => {
+                Object.keys(samplePhotoObj).forEach((key) => {
+                  expect(photoObj).toHaveProperty(key);
+                  const matchingType = (
+                    photoObj[key].constructor === samplePhotoObj[key].constructor
+                  );
+                  expect(matchingType).toBeTruthy();
 
-                const validURL = photoObj[key].match(urlRegex);
-                expect(validURL).toBeTruthy();
+                  const validURL = photoObj[key].match(urlRegex);
+                  expect(validURL).toBeTruthy();
+                });
               });
             });
           });
-        });
 
-        describe('Skus Object', () => {
-          it('skus objects contains key/value pairs', () => {
-            const { skus } = styleObj;
-            const sampleSkuObj = {
-              1471680: {
-                quantity: 14,
-                size: '7',
-              },
-              1471681: {
-                quantity: 25,
-                size: '7.5',
-              },
-            };
-            console.log('Sku data types');
-            console.log(Object.keys(skus).map((e) => typeof e));
+          describe('Skus Object', () => {
+            it('skus objects contains key/value pairs', () => {
+              const { skus } = styleObj;
+              const sampleSkuObj = {
+                1471680: {
+                  quantity: 14,
+                  size: '7',
+                },
+                1471681: {
+                  quantity: 25,
+                  size: '7.5',
+                },
+              };
+              console.log('Sku data types');
+              console.log(Object.keys(skus).map((e) => typeof e));
 
-            expect(false).toBeTruthy();
+              expect(false).toBeTruthy();
+            });
           });
         });
       });
