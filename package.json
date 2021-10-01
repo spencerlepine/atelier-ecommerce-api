@@ -63,10 +63,10 @@
 		}
 	},
 	"lint-staged": {
-		"*.{js,test.jscss,json,md}": [
+		"*.{js,css,json,md}": [
 			"prettier --write"
 		],
-		"*.{js,test.js}": [
+		"*.{js}": [
 			"eslint --fix"
 		]
 	},
