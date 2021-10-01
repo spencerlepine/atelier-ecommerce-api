@@ -3,6 +3,6 @@ const { related } = require('../../controllers');
 
 const router = Router();
 
-router.get('/:product_id/related', styles.fetchRelatedById);
+router.get('/:product_id/related', related.fetchRelatedById);
 
 module.exports = router;

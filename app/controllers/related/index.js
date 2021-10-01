@@ -3,13 +3,21 @@ const { related: Related } = require('../../database/models');
 const fetchRelatedById = async (req, res) => {
   try {
     const { product_id: id } = req.params;
-    const styles = await Styles.findAll({
+
+    const related = await Related.findAll({
       where: {
-        product_id: id,
+        current_product_id: id,
       },
     });
 
-    return res.status(200).json(styles);
+    if (related.length && related.every((e) => e instanceof Object)) {
+      const formatted = related.map(
+        (relatedObj) => relatedObj.related_product_id,
+      );
+
+      return res.status(200).json(formatted);
+    }
+    throw new Error('Invalid data returned on related query!');
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
