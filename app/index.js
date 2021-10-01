@@ -14,11 +14,10 @@ app.use(logger('dev')); // DELETE THIS
 
 app.use('/', routes);
 
-const server = app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
 
-module.exports = {
-  app: server,
-  close: () => server.close(),
-};
+module.exports.app = app;
