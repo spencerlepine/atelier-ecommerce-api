@@ -25,12 +25,12 @@ const initModels = (sequelize) => {
 	features.belongsTo(product, { as: 'product', foreignKey: 'product_id' });
 	product.hasMany(features, { as: 'features', foreignKey: 'product_id' });
 	related.belongsTo(product, {
-		as: 'currentproductModel',
-		foreignKey: 'currentproductModel_id',
+		as: 'productModel',
+		foreignKey: 'current_product_id',
 	});
 	product.hasMany(related, {
 		as: 'relateds',
-		foreignKey: 'currentproductModel_id',
+		foreignKey: 'current_product_id',
 	});
 	photos.belongsTo(style, { as: 'style', foreignKey: 'style_id' });
 	style.hasMany(photos, { as: 'photos', foreignKey: 'style_id' });
