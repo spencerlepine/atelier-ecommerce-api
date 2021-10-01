@@ -48,11 +48,11 @@ DROP TABLE IF EXISTS "style" CASCADE;
 
 CREATE TABLE "style" (
   "id" INTEGER NOT NULL,
+  "product_id" INTEGER NOT NULL,
   "name" VARCHAR(100) NOT NULL,
-  "original_price" VARCHAR(100) NOT NULL,
   "sale_price" INTEGER DEFAULT NULL,
+  "original_price" INTEGER NOT NULL,
   "default?" BYTEA NOT NULL DEFAULT 'true',
-  "style_id" INTEGER NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -104,6 +104,7 @@ CREATE TABLE "related" (
 -- Foreign Keys
 -- ---
 
+ALTER TABLE "style" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
 ALTER TABLE "features" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
 ALTER TABLE "photos" ADD FOREIGN KEY (style_id) REFERENCES "style" ("id");
 ALTER TABLE "skus" ADD FOREIGN KEY (style_id) REFERENCES "style" ("id");
