@@ -1,0 +1,25 @@
+{
+	"development": {
+		"models_path": "./app/models",
+		"migrations_path": "./app/migrations",
+		"database": "sdi_api_development",
+		"dialect": "postgres"
+	},
+	"test": {
+		"models_path": "./app/models",
+		"migrations_path": "./app/migrations",
+		"database": "sdi_api_development",
+		"dialect": "postgres"
+	},
+	"production": {
+		"models_path": "./app/models",
+		"migrations_path": "./app/migrations",
+		"use_env_variable": "DATABASE_URL",
+		"dialect": "postgres",
+		"dialectOptions": {
+			"ssl": {
+				"rejectUnauthorized": false
+			}
+		}
+	}
+}

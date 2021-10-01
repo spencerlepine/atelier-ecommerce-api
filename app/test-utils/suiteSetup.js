@@ -1,4 +1,4 @@
-const { sequelize } = require('../models');
+const { sequelize } = require('../database/models');
 const server = require('../index');
 
 // Close the entire Sequalize Connection after ALL tests
