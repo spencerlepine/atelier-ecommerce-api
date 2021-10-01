@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) =>
 				allowNull: false,
 				primaryKey: true,
 			},
+			product_id: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
 			name: {
 				type: DataTypes.STRING(40),
 				allowNull: false,
@@ -25,10 +29,6 @@ module.exports = (sequelize, DataTypes) =>
 				type: DataTypes.BLOB,
 				allowNull: false,
 				defaultValue: '\\x74727565',
-			},
-			style_id: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
 			},
 		},
 		{
