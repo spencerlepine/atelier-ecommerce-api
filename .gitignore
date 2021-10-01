@@ -1,7 +1,6 @@
 # csv data
 *.csv
 
-
 # Logs
 logs
 *.log

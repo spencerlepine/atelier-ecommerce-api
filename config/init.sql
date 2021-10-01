@@ -17,8 +17,10 @@ CREATE TABLE "product" (
   "name" VARCHAR(100) NOT NULL,
   "slogan" VARCHAR(1000) NOT NULL,
   "description" VARCHAR(1000) NOT NULL,
-  "category" VARCHAR(100) NOT NULL,
+  "category" VARCHAR(1000) NOT NULL,
   "default_price" INTEGER NOT NULL,
+  "created_at" DATE NOT NULL,
+  "updated_at" DATE NOT NULL,
   PRIMARY KEY ("id")
 );
 
