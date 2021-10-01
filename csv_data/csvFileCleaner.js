@@ -48,7 +48,7 @@ const outputFile = path.join(
 const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
   // Use special regex to ignore a DELIMITER within QOUTE, eg "Let's eat, grandma"
   const delimiterRegex = new RegExp(
-    `${DELIMITER}(?=(?:[^${QOUTE}]*${QOUTE}[^${QOUTE}]*${QOUTE})*[^${QOUTE}]*$)`,
+    `${DELIMITER}(?=(?:[^${QOUTE}]*${QOUTE}[^${QOUTE}]*${QOUTE})*[^${QOUTE}]*)`,
   );
   const columns = lineStr
     .split(delimiterRegex)
@@ -56,17 +56,20 @@ const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
 
   const terminateValQuotes = (value) => {
     if (/["\n]/.test(value)) {
-      return `"${value.replace(/["\n]+/g, '')}"`;
+      return `"${value.replace(/["\n]+/g, '').trim()}"`;
     }
     return value;
   };
+
+  const trimString = (value) => value.trim();
 
   const replaceNull = (value) => (value === 'null' ? '' : value);
 
   const formattedCols = columns.map((value) => {
     let formatted = value;
-    formatted = terminateValQuotes(value);
-    formatted = replaceNull(value);
+    formatted = terminateValQuotes(formatted);
+    formatted = replaceNull(formatted);
+    formatted = trimString(formatted);
     return formatted;
   });
 
