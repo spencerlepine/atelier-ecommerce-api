@@ -13,7 +13,6 @@ const productModel = require('./product/product.model');
 const relatedModel = require('./related/related.model');
 const skusModel = require('./skus/skus.model');
 const styleModel = require('./style/style.model');
-const stylesModel = require('./styles/styles.model');
 
 const initModels = (sequelize) => {
 	const features = featuresModel(sequelize, DataTypes);
@@ -22,7 +21,6 @@ const initModels = (sequelize) => {
 	const related = relatedModel(sequelize, DataTypes);
 	const skus = skusModel(sequelize, DataTypes);
 	const style = styleModel(sequelize, DataTypes);
-	const styles = stylesModel(sequelize, DataTypes);
 
 	features.belongsTo(product, { as: 'product', foreignKey: 'product_id' });
 	product.hasMany(features, { as: 'features', foreignKey: 'product_id' });
@@ -34,14 +32,10 @@ const initModels = (sequelize) => {
 		as: 'relateds',
 		foreignKey: 'currentproductModel_id',
 	});
-	styles.belongsTo(product, { as: 'product', foreignKey: 'product_id' });
-	product.hasMany(styles, { as: 'styles', foreignKey: 'product_id' });
 	photos.belongsTo(style, { as: 'style', foreignKey: 'style_id' });
 	style.hasMany(photos, { as: 'photos', foreignKey: 'style_id' });
 	skus.belongsTo(style, { as: 'style', foreignKey: 'style_id' });
 	style.hasMany(skus, { as: 'skus', foreignKey: 'style_id' });
-	styles.belongsTo(style, { as: 'resultsstyleModel', foreignKey: 'results' });
-	style.hasMany(styles, { as: 'styles', foreignKey: 'results' });
 
 	return {
 		features,
@@ -50,7 +44,6 @@ const initModels = (sequelize) => {
 		related,
 		skus,
 		style,
-		styles,
 	};
 };
 
