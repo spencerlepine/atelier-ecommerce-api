@@ -15,7 +15,7 @@ const expectedFields = [
 	'original_price',
 	'sale_price',
 	'default?',
-	'style_id',
+	'product_id',
 ];
 
 describe('Style Model', () => {
