@@ -28,6 +28,18 @@ module.exports = (sequelize, DataTypes) => sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    createdAt: {
+      field: 'created_at',
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false,
+    },
+    updatedAt: {
+      field: 'updated_at',
+      type: 'TIMESTAMP',
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      allowNull: false,
+    },
   },
   {
     sequelize,

@@ -18,7 +18,7 @@ dotenv.config();
  * Set up the file paths
  */
 const DELIMITER = process.env.DELIMITER || ',';
-const QOUTE = process.env.QUOTE || '"';
+const QUOTE = process.env.QUOTE || '"';
 const POST_DELIMITER = process.env.POST_DELIMITER || '|';
 
 const camelToSnakeCase = (str) => str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
@@ -46,10 +46,16 @@ const outputFile = path.join(
  * CLEAN + TRANSFORM a CSV line string
  */
 const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
-  // Use special regex to ignore a DELIMITER within QOUTE, eg "Let's eat, grandma"
+  // Use special regex to ignore a DELIMITER within QUOTE, eg "Let's eat, grandma"
+  // const delimiterRegex = new RegExp(
+  //   `${DELIMITER}(?=(?:[^${QUOTE}]*${QUOTE}[^${QUOTE}]*${QUOTE})*[^${QUOTE}]*$)`,
+  // );
+  // https://stackabuse.com/regex-splitting-by-character-unless-in-quotes/
+  // https://newbedev.com/splitting-on-comma-outside-quotes
   const delimiterRegex = new RegExp(
-    `${DELIMITER}(?=(?:[^${QOUTE}]*${QOUTE}[^${QOUTE}]*${QOUTE})*[^${QOUTE}]*)`,
+    `${DELIMITER}(?=(?:[^${QUOTE}]*${QUOTE}[^${QUOTE}]*${QUOTE})*[^${QUOTE}]*$)`,
   );
+
   const columns = lineStr
     .split(delimiterRegex)
     .filter((val) => val !== undefined);
@@ -74,9 +80,19 @@ const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
   });
 
   if (isFirstLine) {
+    formattedCols.push('created_at');
+    formattedCols.push('updated_at');
+
     const onlySnakeCase = formattedCols.map((columnStr) => camelToSnakeCase(columnStr));
     return `${onlySnakeCase.join('|')}`;
   }
+  const sqlDate = `"${new Date()
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ')}"`;
+  formattedCols.push(sqlDate);
+  formattedCols.push(sqlDate);
+
   return `\n${formattedCols.join('|')}`;
 };
 
