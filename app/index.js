@@ -1,29 +1,23 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const logger = require('morgan'); // DELETE THIS
+const routes = require('./routes');
 
 const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 // Parse request body
-app.use(express.json());
+app.use(bodyParser.json());
 
-/* ******************* */
-// app.post
-// OR
-// app.use(routes)
-/* ******************* */
+app.use(logger('dev')); // DELETE THIS
 
-// Handle errors hardcoding status 400
-app.use((err, req, res) => {
-  if (err) {
-    console.error(err);
-    res.sendStatus(400);
-  }
-});
+app.use('/', routes);
 
-const server = app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
 
-module.exports = {
-  close: () => server.close(),
-};
+module.exports.app = app;

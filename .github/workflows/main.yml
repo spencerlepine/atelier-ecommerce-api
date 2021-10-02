@@ -3,58 +3,74 @@ name: CI
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
 
 env:
   CI: true
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  DATABASE_HOST: 127.0.0.1
+  DATABASE_PORT: 5432
+  POSTGRES_DB: test_db
+  # GitHub Action Ubuntu uses ip 0.0.0.0
+  DATABASE_URL: postgresql://postgres:postgres@0.0.0.0:5432/test_db
 
 jobs:
-
   ci:
-    name: Node ${{ matrix.node }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        node: [14]
+        node: ['12', '14', '16']
         os: [ubuntu-latest]
-        database-name:
-        - postgres
-        database-password:
-        - example
-        database-user:
-        - postgres
-        database-host:
-        - 127.0.0.1
-        database-port:
-        - 5432
 
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
     steps:
-    - name: ♻️ Check out Git Repository
-      uses: actions/checkout@v2
+      - name: ♻️ Check out Git Repository
+        uses: actions/checkout@v2
 
-    - name: 🐘 Configure Postgres
-      uses: ./Docker/
-      with:
-        postgresql password: example
-        postgresql init scripts: ../config
+      # - name: 🐘 Configure Postgres
+      #   uses: ./Docker/
+      #   with:
+      #     postgresql password: example
+      #     postgresql init scripts: ../config
 
-    - name: 🔖  Set up Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: 🔖  Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
-    - name: ⬇️  Install npm dependencies
-      run: npm install
+      - name: ⬇️  Install npm dependencies
+        run: npm install
 
-    - name: ✅  Run tests
-      env:
-        POSTGRES_USER: ${{ matrix.database-user }}
-        POSTGRES_PASSWORD: ${{ matrix.database-password }}
-        DATABASE_HOST: ${{ matrix.database-host }}
-        DATABASE_PORT: ${{ matrix.database-port }}
-        POSTGRES_DB: ${{ matrix.database-name }}
-      run: npm run test
+      - name: 🔥 Test database connection
+        run: npm run test:db:connection
+
+      - name: ✅  Run tests
+        run: npm run test
+
+      - name: 🔴 Lint all files
+        run: npm run lint:check

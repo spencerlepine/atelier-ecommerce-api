@@ -1,6 +1,6 @@
 # csv data
-csv_data
-csvFilesClean
+*.csv
+backup.sql
 
 # Logs
 logs

@@ -17,8 +17,10 @@ CREATE TABLE "product" (
   "name" VARCHAR(100) NOT NULL,
   "slogan" VARCHAR(1000) NOT NULL,
   "description" VARCHAR(1000) NOT NULL,
-  "category" VARCHAR(100) NOT NULL,
+  "category" VARCHAR(1000) NOT NULL,
   "default_price" INTEGER NOT NULL,
+  "created_at" DATE NOT NULL,
+  "updated_at" DATE NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -33,7 +35,7 @@ CREATE TABLE "features" (
   "id" INTEGER NOT NULL,
   "product_id" INT NOT NULL,
   "feature" VARCHAR(100) NOT NULL,
-  "value" VARCHAR(100) NOT NULL,
+  "value" VARCHAR(100),
   PRIMARY KEY ("id")
 );
 
@@ -46,11 +48,11 @@ DROP TABLE IF EXISTS "style" CASCADE;
 
 CREATE TABLE "style" (
   "id" INTEGER NOT NULL,
+  "product_id" INTEGER NOT NULL,
   "name" VARCHAR(100) NOT NULL,
-  "original_price" VARCHAR(100) NOT NULL,
-  "sale_price" INTEGER NOT NULL DEFAULT NULL,
+  "sale_price" INTEGER DEFAULT NULL,
+  "original_price" INTEGER NOT NULL,
   "default?" BYTEA NOT NULL DEFAULT 'true',
-  "style_id" INTEGER NOT NULL,
   PRIMARY KEY ("id")
 );
 
@@ -79,7 +81,7 @@ DROP TABLE IF EXISTS "skus" CASCADE;
 CREATE TABLE "skus" (
   "id" INTEGER NOT NULL,
   "style_id" INTEGER NOT NULL,
-  "size" VARCHAR(4) NOT NULL,
+  "size" VARCHAR(20) NOT NULL,
   "quantity" INTEGER NOT NULL,
   PRIMARY KEY ("id")
 );
@@ -102,6 +104,7 @@ CREATE TABLE "related" (
 -- Foreign Keys
 -- ---
 
+ALTER TABLE "style" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
 ALTER TABLE "features" ADD FOREIGN KEY (product_id) REFERENCES "product" ("id");
 ALTER TABLE "photos" ADD FOREIGN KEY (style_id) REFERENCES "style" ("id");
 ALTER TABLE "skus" ADD FOREIGN KEY (style_id) REFERENCES "style" ("id");
