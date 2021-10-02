@@ -12,7 +12,7 @@
 Dump CSV files into the `data/` directory.
 
 Run the following command to CLEAN the files:
-`sh $ npm run csv:clean-all `
+`sh $ npm run csv:clean-all`
 
 ## Send CLEAN files to TMP folder
 
@@ -29,3 +29,8 @@ Truncate tableName CASCADE;
 ALTER TABLE tableName ENABLE TRIGGER ALL;
 \copy tableName FROM '/private/tmp/tableName.csv' DELIMITER '|' CSV HEADER;
 ```
+
+## Export Postgres Data
+
+Create a backup for all data inside of the postgres database:
+`pg_dump databaseName > csv_data/backup.sql`

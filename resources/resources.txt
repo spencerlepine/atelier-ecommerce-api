@@ -13,3 +13,15 @@ https://fengmk2.github.io/blog/2014/10/sql-to-sequelize-mapping-chart.html
 
 // https://github.com/sequelize/sequelize-auto
 npx sequelize-auto -h 127.0.0.1 -d postgres -u postgres -x example -p 5432  --dialect postgres -c ./config/db.config.js -o ./app/models -t products
+
+
+### Match the PostgreSQL User
+
+Make sure Postgress has a user matching .env credentials
+Create a USER matching configuration credentials
+
+```sh
+psql=# CREATE USER postgres WITH PASSWORD 'example';
+OR
+psql=# ALTER USER postgres WITH PASSWORD 'example';
+```
