@@ -9,7 +9,7 @@
     "test:watch": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit --onlyChanged --watch",
     "test:db:connection": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit **/**/connection.test.js",
     "old:pretest": "cross-env NODE_ENV=test npm run db:reset",
-    "prestest": "NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
+    "pretest": "NODE_ENV=test npm run sequelize db:migrate && NODE_ENV=test npm run sequelize db:seed:all",
     "db:create:test": "cross-env NODE_ENV=test npm run sequelize db:create",
     "old:db:reset": "npm run sequelize db:drop && npm run sequelize db:create && npm run sequelize db:migrate && npm run sequelize db:seed:all",
     "db:reset": "npm run sequelize db:migrate && npm run sequelize db:seed:all",
@@ -43,6 +43,7 @@
     "pg-copy-streams": "6.0.2",
     "pg-pool": "^3.4.1",
     "sequelize": "^6.6.5",
+    "sequelize-auto-migrations": "^1.0.3",
     "supertest": "^6.1.6"
   },
   "devDependencies": {
