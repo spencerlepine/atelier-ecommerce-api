@@ -16,7 +16,7 @@ module.exports = {
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   port: process.env.DATABASE_PORT,
-  host: '127.0.0.1',
+  host: process.env.DATABASE_HOST, // '127.0.0.1',
   dialect: 'postgres',
   // max: 10, // Pool max size
   idleTimeoutMillis: 1000, // Close idle clients after 1 second

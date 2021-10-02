@@ -21,12 +21,13 @@ const DELIMITER = process.env.DELIMITER || ',';
 const QUOTE = process.env.QUOTE || '"';
 const POST_DELIMITER = process.env.POST_DELIMITER || '|';
 
-const camelToSnakeCase = (str) => str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+const camelToSnakeCase = (str) =>
+  str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 
 const targetFileName = process.env.TARGET_FILE;
 if (!targetFileName) {
   throw new Error(
-    'please specify CSV file name: "TARGET_FILE=customers ... node index.js"',
+    'please specify CSV file name: "TARGET_FILE=customers ... node index.js"'
   );
 }
 
@@ -39,7 +40,7 @@ const inputFile = path.join(__dirname, `${targetFileName}.csv`);
 
 const outputFile = path.join(
   __dirname,
-  `${process.env.OUTPUT_FOLDER}/${targetFileName}.csv`,
+  `${process.env.OUTPUT_FOLDER}/${targetFileName}.csv`
 );
 
 /*
@@ -53,7 +54,7 @@ const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
   // https://stackabuse.com/regex-splitting-by-character-unless-in-quotes/
   // https://newbedev.com/splitting-on-comma-outside-quotes
   const delimiterRegex = new RegExp(
-    `${DELIMITER}(?=(?:[^${QUOTE}]*${QUOTE}[^${QUOTE}]*${QUOTE})*[^${QUOTE}]*$)`,
+    `${DELIMITER}(?=(?:[^${QUOTE}]*${QUOTE}[^${QUOTE}]*${QUOTE})*[^${QUOTE}]*$)`
   );
 
   const columns = lineStr
@@ -83,7 +84,9 @@ const transformCSVLine = (lineStr, delimiter = ',', isFirstLine = false) => {
     formattedCols.push('created_at');
     formattedCols.push('updated_at');
 
-    const onlySnakeCase = formattedCols.map((columnStr) => camelToSnakeCase(columnStr));
+    const onlySnakeCase = formattedCols.map((columnStr) =>
+      camelToSnakeCase(columnStr)
+    );
     return `${onlySnakeCase.join('|')}`;
   }
   const sqlDate = `"${new Date()
@@ -113,6 +116,6 @@ lineReader
   })
   .on('close', () => {
     console.log(
-      `Created file: <rootDir>/${outputFolder}/${targetFileName}.csv`,
+      `Created file: <rootDir>/${outputFolder}/${targetFileName}.csv`
     );
   });

@@ -1,7 +1,7 @@
 const request = require('supertest');
 const { app } = require('../../index');
 
-const productId = 1;
+const productId = 987654321;
 const endpoint = '/products';
 const url = `${endpoint}/${productId}/related`;
 

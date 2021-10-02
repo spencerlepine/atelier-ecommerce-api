@@ -64,7 +64,7 @@ describe(`Products API ${endpoint}`, () => {
 
   describe('/:product_id', () => {
     it('should return individual product info', async () => {
-      const productId = 1;
+      const productId = 987654321;
       const res = await request(app).get(`${endpoint}/${productId}`);
 
       expect(res.statusCode).toEqual(200);
@@ -78,7 +78,7 @@ describe(`Products API ${endpoint}`, () => {
     });
 
     it('should have correct data types', async () => {
-      const productId = 1;
+      const productId = 987654321;
       const res = await request(app).get(`${endpoint}/${productId}`);
 
       const product = res.body;

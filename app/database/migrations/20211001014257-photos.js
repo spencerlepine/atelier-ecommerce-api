@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('skus', {
+    return queryInterface.createTable('photos', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -15,17 +15,18 @@ module.exports = {
           key: 'id',
         },
       },
-      size: {
-        type: Sequelize.STRING(4),
+      thumbnail_url: {
+        type: Sequelize.STRING(300),
         allowNull: false,
       },
-      quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+      url: {
+        type: Sequelize.STRING(250),
+        allowNull: true,
+        defaultValue: 'NULL',
       },
     });
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('skus');
+    return queryInterface.dropTable('photos');
   },
 };

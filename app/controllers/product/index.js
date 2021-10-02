@@ -1,4 +1,7 @@
-const { product: Products, features: Features } = require('../../database/models');
+const {
+  product: Products,
+  features: Features,
+} = require('../../database/models');
 
 const transformProductObj = (productObj) => {
   const newProduct = { ...productObj.dataValues };
@@ -10,9 +13,9 @@ const transformProductObj = (productObj) => {
     delete newProduct.updatedAt;
   }
   newProduct.campus = 'hr-lax';
-  newProduct.default_price = (
-    parseFloat(newProduct.default_price).toFixed(2).toString()
-  );
+  newProduct.default_price = parseFloat(newProduct.default_price)
+    .toFixed(2)
+    .toString();
 
   return newProduct;
 };
@@ -39,7 +42,10 @@ const fetchProductById = async (req, res) => {
     });
     const featuresArr = transformFeaturesObj(features);
 
-    const transformed = { features: featuresArr, ...transformProductObj(product) };
+    const transformed = {
+      features: featuresArr,
+      ...transformProductObj(product),
+    };
     return res.status(200).json(transformed);
   } catch (error) {
     return res.status(500).json({ error: error.message });

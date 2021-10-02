@@ -1,31 +1,27 @@
 'use strict';
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('skus', {
+    return queryInterface.createTable('related', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
-      style_id: {
+      current_product_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'style',
+          model: 'product',
           key: 'id',
         },
       },
-      size: {
-        type: Sequelize.STRING(4),
-        allowNull: false,
-      },
-      quantity: {
+      related_product_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
     });
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('skus');
+    return queryInterface.dropTable('related');
   },
 };

@@ -10,7 +10,7 @@ const fetchRelatedById = async (req, res) => {
       },
     });
 
-    if (related.length && related.every((e) => e instanceof Object)) {
+    if (related instanceof Array && related.every((e) => e instanceof Object)) {
       const formatted = related.map(
         (relatedObj) => relatedObj.related_product_id,
       );
