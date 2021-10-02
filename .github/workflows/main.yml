@@ -16,7 +16,7 @@ env:
   DATABASE_PORT: 5432
   POSTGRES_DB: postgres
   # GitHub Action Ubuntu uses ip 0.0.0.0
-  DATABASE_URL: postgresql://postgres:postgres@0.0.0.0:5432/postgres
+  DATABASE_URL: postgresql://postgres:postgres@0.0.0.0:5432/test_db
 
 jobs:
   ci:
@@ -36,7 +36,7 @@ jobs:
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
+          POSTGRES_DB: test_db
           POSTGRES_USER: postgres
         ports:
           - 5432:5432
