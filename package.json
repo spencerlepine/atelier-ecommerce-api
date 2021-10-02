@@ -16,7 +16,8 @@
 		"format": "prettier --write .",
 		"sequelize": "sequelize --options-path=config/options.js",
 		"csv:clean-file": "node csv_data/csvFileCleaner.js",
-		"csv:clean-all": "for i in csv_data/*.csv; do fullfilename=$i; filename=$(basename \"$fullfilename\"); fname=\"${filename%.*}\"; TARGET_FILE=\"$fname\" npm run csv:clean-file; done"
+		"csv:clean-all": "for i in csv_data/*.csv; do fullfilename=$i; filename=$(basename \"$fullfilename\"); fname=\"${filename%.*}\"; TARGET_FILE=\"$fname\" npm run csv:clean-file; done",
+		"k6:test": "sh resources/k6-tests/load-test.sh"
 	},
 	"repository": {
 		"type": "git",

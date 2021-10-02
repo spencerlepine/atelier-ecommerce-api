@@ -6,7 +6,8 @@ export const options = {
   duration: '10s',
 };
 export default function () {
-  const res = http.get('localhost3000/products');
+  // const endpoint = process.env.ENDPOINT;
+  const res = http.get(`http://localhost:3000/${__ENV.ENDPOINT}`);
   check(res, {
     success: (r) => r.status === 200,
   });
