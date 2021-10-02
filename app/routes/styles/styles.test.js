@@ -2,7 +2,7 @@ const request = require('supertest');
 const { app } = require('../../index');
 
 const endpoint = '/products';
-const productId = 1;
+const productId = 987654321;
 const url = `${endpoint}/${productId}/styles`;
 
 /* eslint-disable */

@@ -4,7 +4,7 @@ module.exports = {
       'product',
       [
         {
-          id: 1,
+          id: 987654321,
           name: 'Camo Onesie',
           slogan: 'Blend in to your crowd',
           description:
@@ -15,7 +15,7 @@ module.exports = {
           updated_at: '1995 10 21',
         },
         {
-          id: 2,
+          id: 987654322,
           name: 'Bright Future Sunglasses',
           slogan: "You've got to wear shades",
           description:
@@ -26,7 +26,7 @@ module.exports = {
           updated_at: '1995 10 21',
         },
         {
-          id: 3,
+          id: 987654323,
           name: 'Morning Joggers',
           slogan: 'Make yourself a morning person',
           description:
@@ -37,7 +37,7 @@ module.exports = {
           updated_at: '1995 10 21',
         },
         {
-          id: 4,
+          id: 987654324,
           name: 'Camo Onesie',
           slogan: 'Blend in to your crowd',
           description:
@@ -48,7 +48,7 @@ module.exports = {
           updated_at: '1995 10 21',
         },
         {
-          id: 5,
+          id: 987654325,
           name: 'Camo Onesie',
           slogan: 'Blend in to your crowd',
           description:
@@ -59,7 +59,7 @@ module.exports = {
           updated_at: '1995 10 21',
         },
         {
-          id: 6,
+          id: 987654326,
           name: 'Camo Onesie',
           slogan: 'Blend in to your crowd',
           description:

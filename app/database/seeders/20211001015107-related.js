@@ -4,17 +4,17 @@ module.exports = {
       'related',
       [
         {
-          id: 1,
+          id: 987654321,
           current_product_id: 1,
           related_product_id: 8,
         },
         {
-          id: 2,
+          id: 987654322,
           current_product_id: 1,
           related_product_id: 9,
         },
         {
-          id: 3,
+          id: 987654323,
           current_product_id: 1,
           related_product_id: 2,
         },

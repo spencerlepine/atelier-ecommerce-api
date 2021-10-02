@@ -42,3 +42,4 @@ volumes:
 - using `docker start containerId` does not reference the docker-compose.yml in current directory
 - tried running: `docker run -e POSTGRES_HOST_AUTH_METHOD=trust postgres:9.6`
 - Copying files into docker container: [Stack Overflow](https://stackoverflow.com/questions/22907231/how-to-copy-files-from-host-to-docker-container)
+- Run Postgres Fix command: `docker exec -it $(docker-compose ps -q postgres9 ) psql -Upostgres -c 'SELECT setval(\'product_id_seq\', (SELECT MAX(id) FROM "product"));'`
