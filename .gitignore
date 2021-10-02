@@ -1,5 +1,6 @@
 # csv data
 *.csv
+backup.sql
 
 # Logs
 logs
