@@ -14,6 +14,7 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
 	});
 
 	it('should return 200 status code', () => {
+		console.log(res);
 		expect(res.statusCode).toEqual(200);
 	});
 
