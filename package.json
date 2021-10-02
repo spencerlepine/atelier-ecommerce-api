@@ -11,6 +11,7 @@
     "pretest": "NODE_ENV=test npm run sequelize db:drop && NODE_ENV=test npm run sequelize db:create && NODE_ENV=test npm run sequelize db:migrate && NODE_ENV=test npm run sequelize db:seed:undo:all && NODE_ENV=test npm run sequelize db:seed:all",
     "db:reset": "npm run sequelize db:drop && npm run sequelize db:create && npm run sequelize db:migrate && npm run sequelize db:seed:all",
     "lint": "prettier --check . '!.md'",
+    "lint:check": "eslint . --ext .js",
     "format": "prettier --write . '!.md'",
     "sequelize": "sequelize --options-path=config/options.js",
     "csv:clean-file": "node csv_data/csvFileCleaner.js",
