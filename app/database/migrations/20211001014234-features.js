@@ -3,12 +3,12 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('features', {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
       product_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'product',
@@ -16,11 +16,11 @@ module.exports = {
         },
       },
       feature: {
-        type: DataTypes.STRING(40),
+        type: Sequelize.STRING(40),
         allowNull: false,
       },
       value: {
-        type: DataTypes.STRING(40),
+        type: Sequelize.STRING(40),
         allowNull: true,
       },
     });

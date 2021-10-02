@@ -3,12 +3,12 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('photos', {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
       style_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'style',
@@ -16,11 +16,11 @@ module.exports = {
         },
       },
       thumbnail_url: {
-        type: DataTypes.STRING(300),
+        type: Sequelize.STRING(300),
         allowNull: false,
       },
       url: {
-        type: DataTypes.STRING(250),
+        type: Sequelize.STRING(250),
         allowNull: true,
         defaultValue: 'NULL',
       },

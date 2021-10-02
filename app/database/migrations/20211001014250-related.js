@@ -3,12 +3,12 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('related', {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
       current_product_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'product',
@@ -16,7 +16,7 @@ module.exports = {
         },
       },
       related_product_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
     });

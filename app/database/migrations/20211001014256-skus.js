@@ -3,12 +3,12 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('skus', {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
       style_id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'style',
@@ -16,11 +16,11 @@ module.exports = {
         },
       },
       size: {
-        type: DataTypes.STRING(4),
+        type: Sequelize.STRING(4),
         allowNull: false,
       },
       quantity: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
     });

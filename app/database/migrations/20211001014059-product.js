@@ -3,28 +3,28 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('product', {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING(100),
+        type: Sequelize.STRING(100),
         allowNull: false,
       },
       slogan: {
-        type: DataTypes.STRING(1000),
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       description: {
-        type: DataTypes.STRING(1000),
+        type: Sequelize.STRING(1000),
         allowNull: false,
       },
       category: {
-        type: DataTypes.STRING(100),
+        type: Sequelize.STRING(100),
         allowNull: false,
       },
       default_price: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       createdAt: {
