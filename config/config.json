@@ -15,7 +15,7 @@
     "host": "localhost",
     "port": 5432,
     "dialect": "postgres",
-    "database": "test_db",
+    "database": "postgres",
     "models_path": "./app/models",
     "migrations_path": "./app/migrations"
   },

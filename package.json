@@ -10,7 +10,6 @@
     "test:db:connection": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit **/**/connection.test.js",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",
     "db:create:test": "cross-env NODE_ENV=test npm run sequelize db:create",
-    "postinstall": "npm run db:create:test",
     "db:reset": "npm run sequelize db:drop && npm run sequelize db:create && npm run sequelize db:migrate && npm run sequelize db:seed:all",
     "lint": "prettier --check . '!.md'",
     "format": "prettier --write . '!.md'",
