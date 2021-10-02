@@ -15,7 +15,7 @@ const mockProductInfo = {
   features: [
     {
       feature: 'Sole',
-      value: 'Rubber',
+      value: null,
     },
     {
       feature: 'Material',
@@ -86,6 +86,15 @@ describe(`Products API ${endpoint}`, () => {
       Object.keys(mockProductInfo).forEach((key) => {
         expect(product[key]).toBeDefined();
         expect(product[key].constructor).toBe(mockProductInfo[key].constructor);
+      });
+
+      product.features.forEach((featureObj) => {
+        expect(featureObj.feature).toBeDefined();
+        expect(featureObj.feature.constructor).toBe(String);
+
+        expect(featureObj.value).toBeDefined();
+        const validValue = featureObj.value === null || typeof featureObj.value === 'string';
+        expect(validValue).toBeTruthy();
       });
     });
   });

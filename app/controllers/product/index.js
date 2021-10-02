@@ -3,7 +3,6 @@ const { product: Products, features: Features } = require('../../database/models
 const transformProductObj = (productObj) => {
   const newProduct = { ...productObj.dataValues };
 
-  console.log(newProduct)
   if (newProduct.created_at === undefined) {
     newProduct.created_at = newProduct.createdAt;
     newProduct.updated_at = newProduct.updatedAt;
@@ -18,6 +17,16 @@ const transformProductObj = (productObj) => {
   return newProduct;
 };
 
+const transformFeaturesObj = (featuresObj) => {
+  try {
+    const features = featuresObj.map((e) => e.dataValues);
+    const mapped = features.map(({ value, feature }) => ({ value, feature }));
+    return mapped;
+  } catch (err) {
+    return [];
+  }
+};
+
 const fetchProductById = async (req, res) => {
   try {
     const { product_id: id } = req.params;
@@ -28,11 +37,9 @@ const fetchProductById = async (req, res) => {
         product_id: id,
       },
     });
+    const featuresArr = transformFeaturesObj(features);
 
-    console.log(features);
-
-    const transformed = { features, ...transformProductObj(product) };
-
+    const transformed = { features: featuresArr, ...transformProductObj(product) };
     return res.status(200).json(transformed);
   } catch (error) {
     return res.status(500).json({ error: error.message });
