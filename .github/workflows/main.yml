@@ -71,3 +71,6 @@ jobs:
 
       - name: ✅  Run tests
         run: npm run test
+
+      - name: 🔴 Lint all files
+        run: eslint . --ext .js
