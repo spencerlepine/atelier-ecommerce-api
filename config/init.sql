@@ -35,7 +35,7 @@ CREATE TABLE "features" (
   "id" INTEGER NOT NULL,
   "product_id" INT NOT NULL,
   "feature" VARCHAR(100) NOT NULL,
-  "value" VARCHAR(100) NOT NULL,
+  "value" VARCHAR(100),
   PRIMARY KEY ("id")
 );
 
