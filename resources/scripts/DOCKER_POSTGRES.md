@@ -6,7 +6,7 @@
 version: '2'
 
 services:
-  postgres9:
+  postgresContainer:
     image: postgres:9.4
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
@@ -24,12 +24,13 @@ volumes:
 - Find [article](https://www.tecmint.com/backup-and-restore-postgresql-database/) to backup postgres
 - export the postgres database `pg_dump postgres > backup.sql`
 - Upload Postgres backup into docker container:
-  `docker exec -i $(docker-compose ps -q postgres9 ) psql -Upostgres < backup.sql`
+  `docker exec -i $(docker-compose ps -q postgresContainer ) psql -Upostgres < backup.sql`
 - List the tables to verify everything uploaded:
-  `docker exec -it $(docker-compose ps -q postgres9 ) psql -Upostgres -c '\z'`
+  `docker exec -it $(docker-compose ps -q postgresContainer ) psql -Upostgres -c '\z'`
 
 ## Commands
 
+- Create a database: `docker exec -it $(docker-compose ps -q postgresContainer ) psql -Upostgres -c 'CREATE DATABASE test_db;'`
 - START the docker container: `docker-compose up`
 - STOP the docker container: `docker-compose stop`
 - Test the connection works: `npm run test:db:connection`
