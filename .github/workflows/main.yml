@@ -10,6 +10,12 @@ on:
 
 env:
   CI: true
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  DATABASE_HOST: 127.0.0.1
+  DATABASE_PORT: 5432
+  POSTGRES_DB: postgres
+  DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
 
 jobs:
 
@@ -20,16 +26,6 @@ jobs:
       matrix:
         node: [ '12', '14', '16' ]
         os: [ubuntu-latest]
-        database-name:
-        - postgres
-        database-password:
-        - example
-        database-user:
-        - postgres
-        database-host:
-        - 127.0.0.1
-        database-port:
-        - 5432
 
     name: Node ${{ matrix.node }} on ${{ matrix.os }}
     steps:
@@ -50,11 +46,8 @@ jobs:
     - name: ⬇️  Install npm dependencies
       run: npm install
 
+    - name: 🔥 Test database connection
+      run: npm run test:db:connection
+
     - name: ✅  Run tests
-      env:
-        POSTGRES_USER: ${{ matrix.database-user }}
-        POSTGRES_PASSWORD: ${{ matrix.database-password }}
-        DATABASE_HOST: ${{ matrix.database-host }}
-        DATABASE_PORT: ${{ matrix.database-port }}
-        POSTGRES_DB: ${{ matrix.database-name }}
       run: npm run test
