@@ -1,6 +1,37 @@
 const request = require('supertest');
 const { app } = require('../../index');
 
+const mockProductInfo = {
+  id: 42370,
+  campus: 'hr-lax',
+  name: 'Heir Force Ones',
+  slogan: 'A sneaker dynasty',
+  description:
+    "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl",
+  category: 'Kicks',
+  default_price: '99.00',
+  created_at: '2021-08-13T14:39:39.968Z',
+  updated_at: '2021-08-13T14:39:39.968Z',
+  features: [
+    {
+      feature: 'Sole',
+      value: null,
+    },
+    {
+      feature: 'Material',
+      value: 'FullControlSkin',
+    },
+    {
+      feature: 'Mid-Sole',
+      value: 'ControlSupport Arch Bridge',
+    },
+    {
+      feature: 'Stitching',
+      value: 'Double Stitch',
+    },
+  ],
+};
+
 const endpoint = '/products';
 
 describe(`Products API ${endpoint}`, () => {
@@ -44,6 +75,27 @@ describe(`Products API ${endpoint}`, () => {
       expect(product.id).toBe(productId);
       expect(product).toHaveProperty('created_at');
       expect(product).toHaveProperty('updated_at');
+    });
+
+    it('should have correct data types', async () => {
+      const productId = 1;
+      const res = await request(app).get(`${endpoint}/${productId}`);
+
+      const product = res.body;
+
+      Object.keys(mockProductInfo).forEach((key) => {
+        expect(product[key]).toBeDefined();
+        expect(product[key].constructor).toBe(mockProductInfo[key].constructor);
+      });
+
+      product.features.forEach((featureObj) => {
+        expect(featureObj.feature).toBeDefined();
+        expect(featureObj.feature.constructor).toBe(String);
+
+        expect(featureObj.value).toBeDefined();
+        const validValue = featureObj.value === null || typeof featureObj.value === 'string';
+        expect(validValue).toBeTruthy();
+      });
     });
   });
 });

@@ -1,17 +1,46 @@
-const { product: Products } = require('../../database/models');
+const { product: Products, features: Features } = require('../../database/models');
+
+const transformProductObj = (productObj) => {
+  const newProduct = { ...productObj.dataValues };
+
+  if (newProduct.created_at === undefined) {
+    newProduct.created_at = newProduct.createdAt;
+    newProduct.updated_at = newProduct.updatedAt;
+    delete newProduct.createdAt;
+    delete newProduct.updatedAt;
+  }
+  newProduct.campus = 'hr-lax';
+  newProduct.default_price = (
+    parseFloat(newProduct.default_price).toFixed(2).toString()
+  );
+
+  return newProduct;
+};
+
+const transformFeaturesObj = (featuresObj) => {
+  try {
+    const features = featuresObj.map((e) => e.dataValues);
+    const mapped = features.map(({ value, feature }) => ({ value, feature }));
+    return mapped;
+  } catch (err) {
+    return [];
+  }
+};
 
 const fetchProductById = async (req, res) => {
   try {
     const { product_id: id } = req.params;
     const product = await Products.findByPk(id);
 
-    // Transform the time stamp keys to snake case
-    if (product.dataValues.created_at === undefined) {
-      product.dataValues.created_at = product.dataValues.createdAt;
-      product.dataValues.updated_at = product.dataValues.updatedAt;
-    }
+    const features = await Features.findAll({
+      where: {
+        product_id: id,
+      },
+    });
+    const featuresArr = transformFeaturesObj(features);
 
-    return res.status(200).json(product);
+    const transformed = { features: featuresArr, ...transformProductObj(product) };
+    return res.status(200).json(transformed);
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) =>
 			},
 			value: {
 				type: DataTypes.STRING(40),
-				allowNull: false,
+				allowNull: true,
 			},
 		},
 		{

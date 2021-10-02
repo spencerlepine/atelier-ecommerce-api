@@ -67,7 +67,7 @@
 		"*.{js,css,json,md}": [
 			"prettier --write"
 		],
-		"*.{js}": [
+		"*.js": [
 			"eslint --fix"
 		]
 	},

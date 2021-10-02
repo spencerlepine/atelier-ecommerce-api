@@ -6,19 +6,17 @@ const {
 
 const transformSkuList = (sequelizeQueryResult) => {
   try {
-    const skusOutput = {};
-
-    sequelizeQueryResult.forEach(({ dataValues }) => {
-      const { style_id: id, size, quantity } = dataValues;
-
-      skusOutput[id] = {
-        size,
-        quantity,
-      };
-    });
-
-    return skusOutput;
+    return sequelizeQueryResult
+      .map((e) => e.dataValues)
+      .reduce(
+        (outputObj, { size, quantity, id }) => ({
+          ...outputObj,
+          [id]: { size, quantity },
+        }),
+        {},
+      );
   } catch (err) {
+    console.log(err);
     return {};
   }
 };
@@ -44,15 +42,18 @@ const fetchStylesById = async (req, res) => {
             style_id: styleObj.id,
           },
         });
+        console.log(styleObj.id);
 
         return Promise.all([stylePhotosPromise, styleSkusPromise]).then(
           (promiseResults) => {
             const [photos, skus] = promiseResults;
+            const transformedPhotos = photos.map((e) => e.dataValues);
 
             return {
               ...styleObj,
+              'default?': !!styleObj['default?'],
               style_id: styleObj.id,
-              photos: [],
+              photos: transformedPhotos,
               skus: transformSkuList(skus),
             };
           },
