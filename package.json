@@ -7,6 +7,7 @@
 		"start": "nodemon app/index.js",
 		"test": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit",
 		"test:watch": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit --onlyChanged --watch",
+		"test:db:connection": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit **/**/connection.test.js",
 		"old:pretest": "cross-env NODE_ENV=test npm run db:reset",
 		"prestest": "NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all",
 		"db:create:test": "cross-env NODE_ENV=test npm run sequelize db:create",
