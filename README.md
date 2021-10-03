@@ -47,7 +47,7 @@ $ npm start
 
 ## Loading CSV Data
 
-- Refer to [CSV Instructions](csv-data/README.md)
+- Refer to [CSV Instructions](csv_data/README.md)
 
 ## More Tools
 
