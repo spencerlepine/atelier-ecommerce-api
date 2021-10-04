@@ -1,5 +1,7 @@
 # Using CSV Data
 
+The following is a walkthrough of cleaning CSV files, and loading them into a local Postgres database.
+
 ## Directory structure:
 
 |- data/
