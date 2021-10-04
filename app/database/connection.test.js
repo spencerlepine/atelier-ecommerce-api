@@ -1,4 +1,4 @@
-const { sequelize } = require('./models');
+const { sequelize } = require('./index');
 
 describe('Model Connection', () => {
   it('should connect', (done) => {
