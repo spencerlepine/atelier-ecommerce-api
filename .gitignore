@@ -1,3 +1,7 @@
+# Secret Docker Files
+Dockerfile
+docker-compose.yml
+
 # csv data
 *.csv
 backup.sql
