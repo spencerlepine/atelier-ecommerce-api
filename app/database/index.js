@@ -1,8 +1,8 @@
 // const Pool = require('pg-pool');
 const { Sequelize } = require('sequelize');
 const { Pool } = require('pg');
-const dbConfig = require('../../../config/db.config');
-const modelInitializer = require('./init-models');
+const dbConfig = require('../../config/db.config');
+const modelInitializer = require('./models/init-models');
 
 const sequelize = new Sequelize(
   dbConfig.database,
@@ -19,7 +19,7 @@ const sequelize = new Sequelize(
       acquire: dbConfig.pool.acquire,
       idle: dbConfig.pool.idle,
     },
-  }
+  },
 );
 
 const models = modelInitializer.initModels(sequelize);

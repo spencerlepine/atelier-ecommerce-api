@@ -1,4 +1,4 @@
-const { related: Related } = require('../../database/models');
+const { related: Related } = require('../../database');
 
 const fetchRelatedById = async (req, res) => {
   try {

@@ -1,8 +1,4 @@
-const {
-  style: Styles,
-  photos: Photos,
-  skus: Skus,
-} = require('../../database/models');
+const { style: Styles, photos: Photos, skus: Skus } = require('../../database');
 
 const transformSkuList = (sequelizeQueryResult) => {
   try {
