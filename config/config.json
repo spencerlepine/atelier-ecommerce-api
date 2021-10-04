@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "host": "0.0.0.0",
+    "username": "docker",
+    "password": "123456",
+    "host": "db",
     "port": 5432,
     "dialect": "postgres",
-    "database": "postgres",
+    "database": "docker",
     "models_path": "./app/database/models",
     "migrations_path": "./app/database/migrations"
   },
