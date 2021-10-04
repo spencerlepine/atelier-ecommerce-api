@@ -1,6 +1,8 @@
 # Secret Docker Files
 Dockerfile
 docker-compose.yml
+docker.sh
+data
 
 # csv data
 *.csv

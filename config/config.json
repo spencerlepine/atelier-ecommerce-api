@@ -2,12 +2,12 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "host": "localhost",
+    "host": "0.0.0.0",
     "port": 5432,
     "dialect": "postgres",
     "database": "postgres",
-    "models_path": "./app/models",
-    "migrations_path": "./app/migrations"
+    "models_path": "./app/database/models",
+    "migrations_path": "./app/database/migrations"
   },
   "test": {
     "username": "postgres",
@@ -16,17 +16,17 @@
     "port": 5432,
     "dialect": "postgres",
     "database": "test_db",
-    "models_path": "./app/models",
-    "migrations_path": "./app/migrations"
+    "models_path": "./app/database/models",
+    "migrations_path": "./app/database/migrations"
   },
   "production": {
     "username": "postgres",
     "password": "postgres",
-    "host": "localhost",
+    "host": "0.0.0.0",
     "port": 5432,
     "database": "postgres",
-    "models_path": "./app/models",
-    "migrations_path": "./app/migrations",
+    "models_path": "./app/database/models",
+    "migrations_path": "./app/database/migrations",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

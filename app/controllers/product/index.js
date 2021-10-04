@@ -1,7 +1,4 @@
-const {
-  product: Products,
-  features: Features,
-} = require('../../database/models');
+const { product: Products, features: Features } = require('../../database');
 
 const transformProductObj = (productObj) => {
   const newProduct = { ...productObj.dataValues };
