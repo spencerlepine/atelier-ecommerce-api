@@ -22,9 +22,9 @@ volumes:
 - ran `docker-compose up`
 - run `npm run test:db:connection`
 - Find [article](https://www.tecmint.com/backup-and-restore-postgresql-database/) to backup postgres
-- export the postgres database `pg_dump postgres > csv_data/backup.sql`
+- export the postgres database `pg_dump postgres > backup.sql`
 - Upload Postgres backup into docker container:
-  `docker exec -i $(docker-compose ps -q postgresContainer ) psql -Upostgres < csv_data/backup.sql`
+  `docker exec -i $(docker-compose ps -q postgresContainer ) psql -Upostgres < backup.sql`
 - List the tables to verify everything uploaded:
   `docker exec -it $(docker-compose ps -q postgresContainer ) psql -Upostgres -c '\z'`
 

@@ -1,12 +1,5 @@
-# Secret Docker Files
-Dockerfile
-docker-compose.yml
-docker.sh
+# Docker files
 data
-
-# csv data
-*.csv
-backup.sql
 
 # Logs
 logs
@@ -40,3 +33,4 @@ TODO
 .husky
 .DS_Store
 .vscode
+backup.sql

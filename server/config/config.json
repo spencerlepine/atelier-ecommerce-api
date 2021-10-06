@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "docker",
-    "password": "123456",
-    "host": "db",
+    "username": "ubuntu",
+    "password": "ubuntu",
+    "host": "54.218.13.73",
     "port": 5432,
     "dialect": "postgres",
-    "database": "docker",
+    "database": "postgres",
     "models_path": "./app/database/models",
     "migrations_path": "./app/database/migrations"
   },
@@ -22,7 +22,7 @@
   "production": {
     "username": "postgres",
     "password": "postgres",
-    "host": "0.0.0.0",
+    "host": "db",
     "port": 5432,
     "database": "postgres",
     "models_path": "./app/database/models",

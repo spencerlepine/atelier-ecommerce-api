@@ -4,19 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app/index.js",
+    "start": "node app/index.js",
+    "dev": "nodemon app/index.js",
     "test": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit",
     "test:watch": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit --onlyChanged --watch",
     "test:db:connection": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit **/**/connection.test.js",
     "pretest": "NODE_ENV=test npm run sequelize db:drop && NODE_ENV=test npm run sequelize db:create && NODE_ENV=test npm run sequelize db:migrate && NODE_ENV=test npm run sequelize db:seed:undo:all && NODE_ENV=test npm run sequelize db:seed:all",
     "db:reset": "npm run sequelize db:drop && npm run sequelize db:create && npm run sequelize db:migrate && npm run sequelize db:seed:all",
-    "lint": "prettier --check . '!.md'",
     "lint:check": "eslint . --ext .js",
-    "format": "prettier --write . '!.md'",
-    "sequelize": "sequelize --options-path=config/options.js",
-    "csv:clean-file": "node csv_data/csvFileCleaner.js",
-    "csv:clean-all": "for i in csv_data/*.csv; do fullfilename=$i; filename=$(basename \"$fullfilename\"); fname=\"${filename%.*}\"; TARGET_FILE=\"$fname\" npm run csv:clean-file; done",
-    "k6:test": "sh resources/k6-tests/load-test.sh"
+    "sequelize": "sequelize --options-path=config/options.js"
   },
   "repository": {
     "type": "git",
@@ -80,8 +76,6 @@
       "models/",
       "migrations/",
       "seeders/",
-      "resources/",
-      "csv_data/",
       "config/"
     ],
     "extends": [

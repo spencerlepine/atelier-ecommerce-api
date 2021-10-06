@@ -1,0 +1,4 @@
+backup.sql
+*.large.sql
+.DS_Store
+data/
