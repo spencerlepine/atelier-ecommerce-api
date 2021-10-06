@@ -1,5 +1,5 @@
 # Docker files
-data
+docker-compose.yml
 
 # Logs
 logs

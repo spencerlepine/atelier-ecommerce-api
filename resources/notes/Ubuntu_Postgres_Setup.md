@@ -20,3 +20,10 @@ cat backup.sql | psql -h localhost -p 5400 -U docker -d docker
 
 
 scp -i server/sdc.pem ./postgres/backup.sql ubuntu@ec2xxxxxxxxxus-west-2.compute.amazonaws.com:backup.sql
+
+# Restart the service:
+sudo service postgresql restart
+
+# Update a Password:
+sudo -u postgres psql
+ALTER USER myusername PASSWORD 'newpassword';

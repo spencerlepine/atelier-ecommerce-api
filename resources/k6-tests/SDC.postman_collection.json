@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "93ccbf60-6d11-4752-b639-1b1c9d7a58a1",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sdc",
+			"item": [
+				{
+					"name": "Product Catalog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    page: 100\n    count: 50\n}",
+							"options": {
+								"raw": {
+									"language": "javascript"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Info Ending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/999999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"999999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Info Middle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/454755",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"454755"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Info Beginning",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Styles A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/999999/styles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"999999",
+								"styles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Styles B",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/700000/styles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"700000",
+								"styles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Related A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/700000/related",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"700000",
+								"related"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Related B",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 2000ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products/999999/related",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"999999",
+								"related"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

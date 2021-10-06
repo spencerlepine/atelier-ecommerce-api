@@ -7,7 +7,7 @@ services:
   server:
     build: .
     environment:
-      DATABASE_URL: postgresql://ubuntu:ubuntu@54.218.13.73:5432/ubuntu
+      DATABASE_URL: postgresql://ubuntu:ubuntu@<host>:5432/ubuntu
       NODE_ENV: development
       PORT: 3000
     ports:
