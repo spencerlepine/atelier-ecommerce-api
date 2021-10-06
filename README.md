@@ -28,56 +28,29 @@ This project includes an Express app that connects to a PostgreSQL database. The
 ## Setup:
 
 ```sh
+$ cd server
 $ cp .env.sample .env
 $ npm install
-$ npm run test:db:connection # See "Building a Docker Container"
-$ npm start
+# Build or Rebuild the Docker Container
+$ docker-compose up --build -d
+# Run Nodejs commands in the Docker Container
+$ docker exec container_name_server_1 npm run test:db:connection
 ```
 
-## Building a Docker Container
-
-Follow these steps to build and run a docker container.
-The compose file will create the Node server, and Postgres database.
-
-1. Export/Backup an existing Postgres database:
-   `$ pg_dump postgres > csv_data/backup.sql`
-
-2. Run the following `docker-compose` commands:
+### Alternative Setup
 
 ```sh
-# PostgreSQL Connection String
-# postgres://<POSTGRES_USER>:<POSTGRES_PASSWORD>@<DATABASE_HOST>:<DATABASE_PORT>/<POSTGRES_DB>
-# postgres://example:1234@db:5432/postgres_db
-
-# Configure the Postgres Database Name + User
-$ cp docker-compose.yml.sample docker-compose.yml
-# Build the container
-$ docker-compose up --build -d
-
-# After updating code, rebuild the container
-$ docker-compose down
-$ docker-compose up --build -d
-
-# Test the database connection
-$ docker exec container_name_server_1 npm run test:db:connection
-
-# Enter the psql CLI
-$ docker exec -it container_name_db_1 psql -U example -W postgres_db
-
-#                               #
-#  ***** POSTGRES SET UP *****  #
-#                               #
-
-# Upload Postgres backup into docker container:
-$ cat ./csv_data/backup.sql | docker exec -i container_name_db_1 psql -U example -d postgres_db
-
-# Print the Postgres data INSIDE the docker container:
-$ docker exec -it $(docker-compose ps -q db ) psql -U example -d postgres_db -c '\z'
+# Start the Express server
+$ npm start
+# *START* a local PostgreSQL database (PORT 5432)
+# Update the DATABASE URL: postgres://postgres:postgres@127.0.0.1:5432/postgres
+$ npm run test:db:connection
 ```
 
 ## More Tools
 
-- [k6](https://k6.io/)
+- Run [k6](https://k6.io/) tests:
+  `$ sh resources/k6-tests/load-test.sh`
 
 ---
 
