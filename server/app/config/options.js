@@ -6,7 +6,7 @@ const path = require('path');
 // https://github.com/sequelize/cli/issues/28
 module.exports = {
   config: path.join(__dirname, 'config.json'),
-  'migrations-path': path.join(__dirname, '../app/database/migrations'),
-  'seeders-path': path.join(__dirname, '../app/database/seeders'),
-  'models-path': path.join(__dirname, '../app/database/models'),
+  'migrations-path': path.join(__dirname, '../src/database/migrations'),
+  'seeders-path': path.join(__dirname, '../src/database/seeders'),
+  'models-path': path.join(__dirname, '../src/database/models'),
 };

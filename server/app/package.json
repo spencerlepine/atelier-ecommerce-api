@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app/index.js",
-    "dev": "nodemon app/index.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit",
     "test:watch": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit --onlyChanged --watch",
     "test:db:connection": "cross-env NODE_ENV=test jest --no-cache --detectOpenHandles --runInBand --forceExit **/**/connection.test.js",
@@ -101,7 +101,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "./app/test-utils/suiteSetup.js"
+      "./src/test-utils/suiteSetup.js"
     ],
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
