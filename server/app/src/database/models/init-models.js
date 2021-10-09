@@ -3,7 +3,7 @@
 // Install `sequelize-auto` https://github.com/sequelize/sequelize-auto
 // Run the following command (all one line):
 //  $ npx sequelize-auto -h 127.0.0.1 -d postgres -u postgres -x example -p
-//        5432  --dialect postgres -c ./config/db.config.js -o ./app/models -t
+//        5432  --dialect postgres -c ./config/db.config.js -o ./src/models -t
 //        style product styles features skus related photos
 
 const { DataTypes } = require('sequelize');

@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+    nodeserver:
+        build:
+            context: ./app
+        ports:
+            - "3000:3000"
+        image: spencerlepine/node-server
+
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+        ports:
+            - "80:80"
+        image: spencerlepine/sdc-nginx

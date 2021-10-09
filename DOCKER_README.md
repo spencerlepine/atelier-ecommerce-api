@@ -2,6 +2,8 @@
 
 Build a Docker container with Postgres and Node docker images.
 
+[ARM64 StackOverflow](https://stackoverflow.com/questions/66350893/why-macosx86-can-run-docker-arm-container-arm64v8-alpine)
+
 ## Setup:
 
 ```sh

@@ -47,17 +47,17 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: ⬇️  Install npm dependencies
-        working-directory: ./server
+        working-directory: ./server/app
         run: npm install
 
       - name: 🔥 Test database connection
-        working-directory: ./server
+        working-directory: ./server/app
         run: npm run test:db:connection
 
       - name: ✅  Run tests
-        working-directory: ./server
+        working-directory: ./server/app
         run: npm run test
 
       - name: 🔴 Lint all files
-        working-directory: ./server
+        working-directory: ./server/app
         run: npm run lint:check
