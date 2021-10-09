@@ -2,6 +2,7 @@ const request = require('supertest');
 const { app } = require('../../index');
 
 const endpoint = '/products';
+// ID specified in seeder files
 const productId = 987654321;
 const url = `${endpoint}/${productId}/styles`;
 
@@ -14,7 +15,6 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
   });
 
   it('should return 200 status code', () => {
-    console.log(res);
     expect(res.statusCode).toEqual(200);
   });
 
@@ -55,6 +55,8 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
 
       it('sale price could be null or a string', () => {
         const { results } = res.body;
+        expect(results instanceof Array).toBeTruthy();
+
         results.forEach((styleObj) => {
           const validSalePrice =
             styleObj.sale_price === null ||
@@ -65,14 +67,25 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
 
       it('should contain valid key/value pairs', () => {
         const { results } = res.body;
+        expect(results instanceof Array).toBeTruthy();
+
         results.forEach((styleObj) => {
           Object.keys(sampleStyleObj).forEach((key) => {
             expect(styleObj).toHaveProperty(key);
+
+            if (key === 'default?' && typeof styleObj[key] === 'boolean') {
+              return;
+            }
 
             // Key: 'sale_price' could be NULL or a string
             const constructorA = (!!styleObj[key] || '').constructor;
             const constructorB = (!!sampleStyleObj[key] || '').constructor;
 
+            if (constructorA !== constructorB) {
+              console.log(
+                `Expected ${constructorA} to be ${constructorB} for [${key}]`
+              );
+            }
             expect(constructorA === constructorB).toBeTruthy();
           });
         });
@@ -119,6 +132,7 @@ describe(`Products Styles ${endpoint}/:product_id/styles`, () => {
         };
 
         const { results } = res.body;
+        expect(results instanceof Array).toBeTruthy();
         results.forEach((styleObj) => {
           const { skus } = styleObj;
 

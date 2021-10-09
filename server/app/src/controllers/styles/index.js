@@ -1,11 +1,17 @@
 const { style: Styles, photos: Photos, skus: Skus } = require('../../database');
 
 const fetchStylesById = async (req, res) => {
-  const { product_id: id } = req.params;
+  const { product_id: productId } = req.params;
 
   Styles.findAll({
-    where: { id },
-    attributes: { exclude: ['id'] },
+    where: { product_id: productId },
+    attributes: [
+      ['id', 'style_id'],
+      'name',
+      'original_price',
+      'sale_price',
+      'default?',
+    ],
     include: [
       {
         model: Photos,
@@ -28,11 +34,10 @@ const fetchStylesById = async (req, res) => {
     nest: true,
   })
     .then((completeStyleList) => {
-      // Convert the 'default?' key to a boolean
-      const obj = completeStyleList[0].dataValues;
-      const defaultBool = !!completeStyleList[0].dataValues['default?'];
-      obj['default?'] = defaultBool;
-      res.status(200).json(obj);
+      res.status(200).json({
+        product_id: `${req.params.product_id}`,
+        results: completeStyleList,
+      });
     })
     .catch((error) => res.status(500).json({ error: error.message }));
 };

@@ -34,3 +34,4 @@ TODO
 .DS_Store
 .vscode
 backup.sql
+*.txt

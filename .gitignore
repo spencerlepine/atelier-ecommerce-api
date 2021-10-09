@@ -1,4 +1,9 @@
+# Keys
 *.pem
+
 backup.sql
-postgres-connection.md
+
+# Misc
 libs
+.DS_Store
+TODO

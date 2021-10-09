@@ -21,12 +21,12 @@ module.exports = {
       },
       sale_price: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       'default?': {
-        type: Sequelize.BLOB,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: '\\x74727565',
+        defaultValue: true,
       },
     });
   },

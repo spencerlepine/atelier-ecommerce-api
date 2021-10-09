@@ -1,7 +1,7 @@
 const { product: Products, features: Features } = require('../../database');
 
 const transformProductObj = (productObj) => {
-  const newProduct = { ...productObj.dataValues };
+  const newProduct = { ...(productObj.dataValues || {}) };
 
   if (newProduct.created_at === undefined) {
     newProduct.created_at = newProduct.createdAt;

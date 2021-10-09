@@ -26,9 +26,9 @@ module.exports = (sequelize, DataTypes) =>
         allowNull: false,
       },
       'default?': {
-        type: DataTypes.BLOB,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: '\\x74727565',
+        defaultValue: true,
       },
     },
     {
