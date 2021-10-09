@@ -1,13 +1,11 @@
 # pull the Node.js Docker image
-FROM node:14.3
+FROM node:9
 
 # create the directory inside the container
 WORKDIR /usr/src/app
 
 # copy the package.json files from local machine to the workdir in container
 COPY package*.json ./
-
-RUN set NODE_OPTIONS=--max-old-space-size=61440
 
 # run npm install in our local machine
 RUN npm install
