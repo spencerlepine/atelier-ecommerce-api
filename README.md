@@ -8,10 +8,6 @@ This project is my work for the Hack Reactor System Design Capstone Project. The
 
 This projects constists of a Nginx load balancer, a Node/Express server, and a PostgreSQL database. All three are built/run in docker containers and deployed to AWS EC2 instances. This API endpoint has been optimized to handle product level traffic, verified by load testing.
 
-## Project Overview:
-
-This projects constists of a Nginx load balancer, a Node/Express server, and a PostgreSQL database. All three are built/run in docker containers and deployed to AWS EC2 instances. This API endpoint has been optimized to handle product level traffic, verified by load testing.
-
 ## Resources:
 
 - API Documentation: [Atelier API](https://gist.github.com/trentgoing/d69849d6c16b82d279ffc4ecd127f49f)
