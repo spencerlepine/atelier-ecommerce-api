@@ -2,11 +2,11 @@
 
 [![CI](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml)
 
-This project is my work for the Hack Reactor System Design Capstone Project. The goal was to replace the existing API (for [Project Catwalk](https://github.com/fec-bareminimum/project-catwalk)) with a backend system that can support the full (retail product) data set for the project and can scale to meet the demands of production level traffic.
+The Hack Reactor System Design Capstone Project. The goal was to replace the existing API (for [Project Catwalk](https://github.com/fec-bareminimum/project-catwalk)) with a backend system that can support the full (retail product) data set for the project and can scale to meet the demands of production level traffic.
 
 ## Project Overview:
 
-This projects constists of a Nginx load balancer, a Node/Express server, and a PostgreSQL database. All three are built/run in docker containers and deployed to AWS EC2 instances. This API endpoint has been optimized to handle product level traffic, verified by load testing.
+This projects consists of a Nginx load balancer, a Node/Express server, and a PostgreSQL database. All three are built/run in docker containers and deployed to AWS EC2 instances. This API endpoint has been optimized to handle product level traffic, verified by load testing.
 
 ## Resources:
 
