@@ -56,7 +56,7 @@ jobs:
 
       - name: ✅  Run tests
         working-directory: ./server/app
-        run: npm run test -- --coverage
+        run: npm run test
 
       - name: 🔴 Lint all files
         working-directory: ./server/app
@@ -65,4 +65,6 @@ jobs:
       - name: 🌪️ Publish to coveralls.io
         uses: coverallsapp/github-action@v1.1.2
         with:
+          base-path: ./server/app
+          path-to-lcov: ./server/app/coverage/lcov.info
           github-token: ${{ secrets.GITHUB_TOKEN }}
