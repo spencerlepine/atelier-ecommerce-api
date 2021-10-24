@@ -1,6 +1,4 @@
-# Project Atelier API
-
-[![CI](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml)
+# Project Atelier API [![CI](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml) [![Coverage Status](https://coveralls.io/repos/github/sdc-bareminimum/project-catwalk-related-service/badge.svg?branch=main)](https://coveralls.io/github/sdc-bareminimum/project-catwalk-related-service?branch=main)
 
 The Hack Reactor System Design Capstone Project. The goal was to replace the existing API (for [Project Catwalk](https://github.com/fec-bareminimum/project-catwalk)) with a backend system that can support the full (retail product) data set for the project and can scale to meet the demands of production level traffic.
 

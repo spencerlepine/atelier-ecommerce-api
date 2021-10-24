@@ -56,8 +56,14 @@ jobs:
 
       - name: ✅  Run tests
         working-directory: ./server/app
-        run: npm run test
+        run: npm run test -- --coverage
 
       - name: 🔴 Lint all files
         working-directory: ./server/app
         run: npm run lint:check
+
+      - name: 🌪️ Publish to coveralls.io
+        working-directory: ./server/app
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

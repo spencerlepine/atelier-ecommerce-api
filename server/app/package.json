@@ -98,12 +98,19 @@
     "bracketSpacing": true
   },
   "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html",
+      "lcov"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/*.test.js/"
+    ],
     "setupFilesAfterEnv": [
       "./src/test-utils/suiteSetup.js"
     ],
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
+    "testEnvironment": "node"
   }
 }
