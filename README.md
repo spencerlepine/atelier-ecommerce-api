@@ -1,6 +1,6 @@
 # Project Atelier API [![CI](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/sdc-bareminimum/project-catwalk-related-service/actions/workflows/main.yml) [![Coverage Status](https://coveralls.io/repos/github/sdc-bareminimum/project-catwalk-related-service/badge.svg?branch=main)](https://coveralls.io/github/sdc-bareminimum/project-catwalk-related-service?branch=main)
 
-[Hack Reactor](https://www.hackreactor.com/) System Design Capstone Project, which involved scaling the **Node.js RESTful API** to handle x50 more traffic and reducing p90 latency to ~70ms (-95%).
+[Hack Reactor](https://www.hackreactor.com/) System Design Capstone Project, which involved scaling the **Node.js RESTful API** to handle x50 more traffic and reducing p90 latency to ~70ms (-95%). Developed NGINX load-balancer, optimized the PostgreSQL database, and preformed load-testing with K6 and Loader.io.
 
  ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![AWS EC2](https://img.shields.io/badge/aws-ec2-orange.svg?style=for-the-badge&logo=aws-ec2&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 
